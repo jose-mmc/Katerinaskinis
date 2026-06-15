@@ -1,0 +1,23 @@
+ASSET CATALOG — Katerina's Kinis
+=================================
+
+Drop your image files directly into this folder.
+The filenames must match exactly (case-sensitive):
+
+  IMG_8106.jpeg
+    → Product 1 hero image: The Amalfi Navy set
+    → Used in the Collection section, left card
+    → Recommended: portrait orientation, 3:4 ratio, min 1200px tall
+
+  IMG_8110.jpeg
+    → Product 2 hero image: The Riviera Cream set
+    → Used in the Collection section, right card
+    → Recommended: portrait orientation, 3:4 ratio, min 1200px tall
+
+  01547998-7DE0-4BA2-AE47-D249DF971584.jpg
+    → Technical specification sheet image
+    → Used in the Craftsmanship section, "Technical Specification Sheet" panel
+    → Recommended: landscape orientation, 4:3 ratio
+
+After adding each file, update index.html per the
+<!-- ASSET PLACEMENT --> comments inside each placeholder block.

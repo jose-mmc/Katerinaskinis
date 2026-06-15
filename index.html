@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Katerina's Kinis — Consciously crafted luxury swim essentials. An Amalfi Coast state of mind. Launching July 2026.">
+    <meta name="theme-color" content="#0F2042">
+    <title>Katerina's Kinis — An Amalfi Coast State of Mind</title>
+
+    <!-- Google Fonts: Playfair Display (serif headings) + Inter (sans body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================================
+           DESIGN TOKENS
+        ============================================================ */
+        :root {
+            --cream:        #FAF9F6;
+            --navy:         #0F2042;
+            --gold:         #C5B49E;
+            --gold-light:   #E8DDD2;
+            --text-body:    #3A3A3A;
+            --text-muted:   #7A7A7A;
+
+            --ff-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --ff-sans:  'Inter', 'Helvetica Neue', Arial, sans-serif;
+
+            --space-xs:  0.5rem;
+            --space-sm:  1rem;
+            --space-md:  2rem;
+            --space-lg:  4rem;
+            --space-xl:  6rem;
+            --space-xxl: 9rem;
+
+            --max-w: 1200px;
+            --trans: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            --trans-slow: 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ============================================================
+           RESET & BASE
+        ============================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            background-color: var(--cream);
+            color: var(--navy);
+            font-family: var(--ff-sans);
+            font-weight: 400;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        img { display: block; max-width: 100%; height: auto; }
+
+        /* ============================================================
+           TYPOGRAPHY SCALE
+        ============================================================ */
+        h1, h2, h3, h4 {
+            font-family: var(--ff-serif);
+            font-weight: 400;
+            line-height: 1.15;
+            color: var(--navy);
+        }
+
+        h1 { font-size: clamp(2.6rem, 6.5vw, 5.2rem); }
+        h2 { font-size: clamp(1.75rem, 3.5vw, 2.75rem); }
+        h3 { font-size: clamp(1.15rem, 2vw, 1.5rem); }
+
+        p {
+            font-family: var(--ff-sans);
+            font-size: 0.9375rem;
+            line-height: 1.85;
+            color: var(--text-body);
+            letter-spacing: 0.01em;
+        }
+
+        /* ============================================================
+           LAYOUT UTILITIES
+        ============================================================ */
+        .container {
+            width: 100%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .section-eyebrow {
+            display: block;
+            font-family: var(--ff-sans);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .rule {
+            width: 36px;
+            height: 1px;
+            background: var(--gold);
+            margin: 1.75rem 0;
+        }
+
+        .rule--center { margin-left: auto; margin-right: auto; }
+
+        /* ============================================================
+           SCROLL FADE-IN ANIMATION
+        ============================================================ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity var(--trans-slow), transform var(--trans-slow);
+        }
+
+        .reveal.in-view { opacity: 1; transform: translateY(0); }
+        .reveal.d1 { transition-delay: 0.12s; }
+        .reveal.d2 { transition-delay: 0.24s; }
+        .reveal.d3 { transition-delay: 0.36s; }
+        .reveal.d4 { transition-delay: 0.48s; }
+
+        /* ============================================================
+           KK LOGO MARK
+        ============================================================ */
+        .kk-logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            gap: 0;
+        }
+
+        .kk-logo__mark {
+            font-family: var(--ff-serif);
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.04em;
+            line-height: 1;
+        }
+
+        /* Nav KK logo */
+        .nav__logo img {
+            height: 36px;
+            width: auto;
+            display: block;
+            /* Invert to white when on dark hero background */
+            filter: brightness(0) invert(1);
+            transition: filter var(--trans);
+        }
+
+        .nav.scrolled .nav__logo img {
+            filter: none;
+        }
+
+        /* Footer KK logo */
+        .footer__logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.75rem;
+            text-decoration: none;
+        }
+
+        .footer__logo img {
+            height: 52px;
+            width: auto;
+        }
+
+        .footer__logo-name {
+            font-family: var(--ff-sans);
+            font-size: 0.62rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           NAVIGATION
+        ============================================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            inset-inline: 0;
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.3rem 2rem;
+            transition: background var(--trans), border-color var(--trans);
+        }
+
+        .nav.scrolled {
+            background: rgba(250, 249, 246, 0.95);
+            border-bottom: 1px solid var(--gold-light);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* ============================================================
+           TICKER / MARQUEE
+        ============================================================ */
+        .ticker {
+            overflow: hidden;
+            background: var(--navy);
+            border-top: 1px solid rgba(197, 180, 158, 0.25);
+            border-bottom: 1px solid rgba(197, 180, 158, 0.25);
+            padding: 0.85rem 0;
+            user-select: none;
+        }
+
+        .ticker__track {
+            display: flex;
+            white-space: nowrap;
+            will-change: transform;
+            animation: ticker-scroll 18s linear infinite;
+        }
+
+        .ticker__track:hover { animation-play-state: paused; }
+
+        .ticker__item {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding-right: 1.5rem;
+        }
+
+        .ticker__text {
+            font-family: var(--ff-sans);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(250, 249, 246, 0.75);
+        }
+
+        .ticker__dot {
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background: var(--gold);
+            flex-shrink: 0;
+        }
+
+        @keyframes ticker-scroll {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+
+        /* ============================================================
+           HERO
+        ============================================================ */
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--navy);
+        }
+
+        .hero__bg {
+            position: absolute;
+            inset: 0;
+            background-image: url('https://images.unsplash.com/photo-1568282167464-cb0d811b05c2?w=1920&q=85&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center 40%;
+        }
+
+        .hero__vignette {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                180deg,
+                rgba(10, 20, 50, 0.55) 0%,
+                rgba(10, 20, 50, 0.45) 40%,
+                rgba(10, 20, 50, 0.7) 100%
+            );
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: var(--space-xl) var(--space-md);
+            max-width: 860px;
+        }
+
+        /* Brand identity block — visible immediately on load */
+        .hero__brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+            margin-bottom: 2.75rem;
+            opacity: 0;
+            animation: riseUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+        }
+
+        .hero__kk {
+            height: clamp(90px, 16vw, 160px);
+            width: auto;
+            filter: brightness(0) invert(1) drop-shadow(0 4px 40px rgba(10, 20, 50, 0.6));
+        }
+
+        .hero__brand-rule {
+            width: 40px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero__brand-name {
+            font-family: var(--ff-sans);
+            font-size: 0.62rem;
+            font-weight: 400;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: rgba(250, 249, 246, 0.8);
+        }
+
+        .hero__eyebrow {
+            display: block;
+            font-size: 0.67rem;
+            font-weight: 400;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2.25rem;
+            opacity: 0;
+            animation: riseUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.35s forwards;
+        }
+
+        .hero__sub {
+            font-family: var(--ff-serif);
+            font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+            font-weight: 400;
+            font-style: italic;
+            letter-spacing: 0.01em;
+            line-height: 1.35;
+            color: var(--cream);
+            text-shadow: 0 2px 24px rgba(10, 20, 50, 0.5);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: riseUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.55s forwards;
+        }
+
+        .hero__cta {
+            display: inline-block;
+            font-family: var(--ff-sans);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--cream);
+            border: 1px solid rgba(250, 249, 246, 0.5);
+            padding: 1.05rem 2.75rem;
+            text-decoration: none;
+            cursor: pointer;
+            background: none;
+            transition: background var(--trans), border-color var(--trans);
+            opacity: 0;
+            animation: riseUp 1s cubic-bezier(0.4, 0, 0.2, 1) 0.75s forwards;
+        }
+
+        .hero__cta:hover {
+            background: rgba(250, 249, 246, 0.1);
+            border-color: rgba(250, 249, 246, 0.85);
+        }
+
+        .hero__scroll {
+            position: absolute;
+            bottom: 2.25rem;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.6rem;
+            opacity: 0;
+            animation: fadeIn 1s ease 1.5s forwards;
+        }
+
+        .hero__scroll span {
+            font-size: 0.58rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(250, 249, 246, 0.45);
+        }
+
+        .hero__scroll-line {
+            width: 1px;
+            height: 42px;
+            background: linear-gradient(180deg, rgba(250, 249, 246, 0.5), transparent);
+            animation: pulse 2.8s ease-in-out infinite;
+        }
+
+        @keyframes riseUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.45; transform: scaleY(1); transform-origin: top; }
+            50%       { opacity: 0.9;  transform: scaleY(1.15); transform-origin: top; }
+        }
+
+        /* ============================================================
+           JET-SET CLUB POPUP
+        ============================================================ */
+        .jetset-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 20, 45, 0.72);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .jetset-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .jetset-modal {
+            position: relative;
+            background: var(--cream);
+            max-width: 520px;
+            width: 100%;
+            padding: clamp(2.5rem, 7vw, 4rem) clamp(2rem, 6vw, 3.5rem);
+            border-top: 3px solid var(--gold);
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 90svh;
+            overflow-y: auto;
+        }
+
+        .jetset-overlay.open .jetset-modal {
+            transform: translateY(0) scale(1);
+        }
+
+        .jetset-modal__close {
+            position: absolute;
+            top: 1.25rem;
+            right: 1.25rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: color var(--trans);
+        }
+
+        .jetset-modal__close:hover { color: var(--navy); }
+
+        .jetset-modal__kk {
+            font-family: var(--ff-serif);
+            font-style: italic;
+            font-size: 2.2rem;
+            color: var(--navy);
+            letter-spacing: -0.03em;
+            line-height: 1;
+            margin-bottom: 0.35rem;
+        }
+
+        .jetset-modal__eyebrow {
+            display: block;
+            font-size: 0.6rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .jetset-modal__rule {
+            width: 32px;
+            height: 1px;
+            background: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .jetset-modal h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 0.75rem;
+        }
+
+        .jetset-modal > p,
+        .jetset-modal__body > p {
+            font-size: 0.875rem;
+            margin-bottom: 1.75rem;
+        }
+
+        /* ============================================================
+           BRAND MANIFESTO BAR
+        ============================================================ */
+        .manifesto {
+            padding: var(--space-xxl) var(--space-md);
+            border-bottom: 1px solid var(--gold-light);
+        }
+
+        .manifesto__inner {
+            max-width: 740px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .manifesto__quote {
+            font-family: var(--ff-serif);
+            font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--navy);
+            line-height: 1.65;
+            letter-spacing: 0.01em;
+        }
+
+        .manifesto__attr {
+            display: block;
+            margin-top: 1.75rem;
+            font-size: 0.67rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        /* ============================================================
+           COLLECTION SHOWCASE
+        ============================================================ */
+        .collection {
+            padding: var(--space-xxl) var(--space-md);
+        }
+
+        .collection__header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .collection__header p {
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.875rem;
+        }
+
+        .collection__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3.5rem 5rem;
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        @media (max-width: 780px) {
+            .collection__grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        /* Product Card */
+        .product {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product__frame {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3 / 4;
+            margin-bottom: 1.75rem;
+            background: var(--gold-light);
+            cursor: default;
+        }
+
+        .product__frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product__frame:hover img { transform: scale(1.04); }
+
+        .product__tag {
+            font-size: 0.63rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.45rem;
+            font-weight: 500;
+        }
+
+        .product__name {
+            font-family: var(--ff-serif);
+            font-size: 1.55rem;
+            color: var(--navy);
+            margin-bottom: 0.8rem;
+        }
+
+        .product__desc {
+            font-size: 0.875rem;
+            line-height: 1.85;
+            color: var(--text-body);
+        }
+
+        .product__meta {
+            margin-top: 1.1rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid var(--gold-light);
+            font-size: 0.68rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .product__piece-label {
+            display: inline-block;
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--cream);
+            background: var(--navy);
+            padding: 0.25em 0.75em;
+            margin-bottom: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           CRAFTSMANSHIP / SIZING
+        ============================================================ */
+        .craft {
+            padding: var(--space-xxl) var(--space-md);
+            background: var(--navy);
+        }
+
+        .craft h2,
+        .craft h3 { color: var(--cream); }
+
+        .craft p { color: rgba(250, 249, 246, 0.72); }
+
+        .craft__inner {
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .craft__header {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+        }
+
+        .craft__header p {
+            max-width: 500px;
+            margin: 0 auto;
+            font-size: 0.875rem;
+        }
+
+        /* Accordion */
+        .accordion { border-top: 1px solid rgba(197, 180, 158, 0.28); }
+
+        .accordion__item { border-bottom: 1px solid rgba(197, 180, 158, 0.28); }
+
+        .accordion__btn {
+            width: 100%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            text-align: left;
+            color: var(--cream);
+        }
+
+        .accordion__btn-label {
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            line-height: 1.4;
+        }
+
+        .accordion__btn-icon {
+            flex-shrink: 0;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: transform var(--trans);
+        }
+
+        .accordion__btn.open .accordion__btn-icon { transform: rotate(45deg); }
+
+        .accordion__body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .accordion__body.open { max-height: 1100px; }
+
+        .accordion__body-inner { padding-bottom: 2.25rem; }
+
+        .table-note {
+            font-size: 0.78rem;
+            color: rgba(250, 249, 246, 0.45);
+            margin-bottom: 1.25rem;
+            letter-spacing: 0.02em;
+        }
+
+        /* Size table */
+        .size-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+        .size-table {
+            width: 100%;
+            min-width: 520px;
+            border-collapse: collapse;
+        }
+
+        .size-table th {
+            font-size: 0.63rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--gold);
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(197, 180, 158, 0.3);
+        }
+
+        .size-table td {
+            font-size: 0.875rem;
+            color: rgba(250, 249, 246, 0.82);
+            padding: 1rem 1rem;
+            border-bottom: 1px solid rgba(197, 180, 158, 0.12);
+            line-height: 1.5;
+        }
+
+        .size-table tr:last-child td { border-bottom: none; }
+
+        .size-table td:first-child {
+            font-weight: 500;
+            color: var(--cream);
+        }
+
+        .size-table td:last-child {
+            font-size: 0.78rem;
+            color: rgba(250, 249, 246, 0.48);
+            font-style: italic;
+        }
+
+        /* Grading grid */
+        .grading-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .grade-card {
+            border: 1px solid rgba(197, 180, 158, 0.22);
+            padding: 1.25rem 1.1rem;
+        }
+
+        .grade-card--base {
+            border-color: var(--gold);
+            background: rgba(197, 180, 158, 0.07);
+        }
+
+        .grade-card__size {
+            font-family: var(--ff-serif);
+            font-size: 1.35rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .grade-card--base .grade-card__size { color: var(--gold); }
+
+        .grade-card__spec {
+            font-size: 0.75rem;
+            color: rgba(250, 249, 246, 0.55);
+            line-height: 1.65;
+        }
+
+        .grade-card--base .grade-card__spec { color: rgba(197, 180, 158, 0.75); }
+
+        /* Spec sheet placeholder */
+        .spec-placeholder {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            background: rgba(197, 180, 158, 0.06);
+            border: 1px solid rgba(197, 180, 158, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin-top: 1.25rem;
+        }
+
+        .spec-placeholder svg { opacity: 0.35; }
+
+        .spec-placeholder span {
+            font-size: 0.63rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: rgba(250, 249, 246, 0.38);
+            text-align: center;
+        }
+
+        .spec-placeholder .spec-filename {
+            font-size: 0.58rem;
+            opacity: 0.55;
+            letter-spacing: 0.06em;
+            text-transform: none;
+        }
+
+        /* ============================================================
+           WAITLIST / LEAD CAPTURE
+        ============================================================ */
+        .waitlist {
+            padding: var(--space-xxl) var(--space-md);
+        }
+
+        .waitlist__inner {
+            max-width: 540px;
+            margin: 0 auto;
+        }
+
+        .waitlist__header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .waitlist__card {
+            border: 1px solid var(--gold);
+            padding: clamp(2rem, 6vw, 3.75rem);
+        }
+
+        .waitlist__card > p {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .waitlist__card > p strong {
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        /* Form */
+        .form-group { margin-bottom: 1rem; }
+
+        .form-label {
+            display: block;
+            font-size: 0.63rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--gold-light);
+            border-radius: 0;
+            padding: 0.875rem 1rem;
+            font-family: var(--ff-sans);
+            font-size: 0.9375rem;
+            color: var(--navy);
+            outline: none;
+            transition: border-color var(--trans);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-input::placeholder { color: var(--text-muted); opacity: 0.55; }
+        .form-input:focus { border-color: var(--navy); }
+        .form-input.is-error { border-color: #b83232; }
+
+        .form-error {
+            font-size: 0.7rem;
+            color: #b83232;
+            margin-top: 0.3rem;
+            display: none;
+            letter-spacing: 0.04em;
+        }
+
+        .form-error.show { display: block; }
+
+        .form-submit {
+            width: 100%;
+            background: var(--navy);
+            color: var(--cream);
+            border: none;
+            padding: 1.05rem 2rem;
+            font-family: var(--ff-sans);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 0.75rem;
+            transition: opacity var(--trans);
+            -webkit-appearance: none;
+        }
+
+        .form-submit:hover:not(:disabled) { opacity: 0.78; }
+        .form-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+
+        .form-privacy {
+            margin-top: 1.25rem;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.04em;
+            text-align: center;
+        }
+
+        /* Success state */
+        .success-state {
+            display: none;
+            opacity: 0;
+            transition: opacity var(--trans-slow);
+            text-align: center;
+            padding: 0.5rem 0;
+        }
+
+        .success-state.show { display: block; }
+        .success-state.animate { opacity: 1; }
+
+        .success-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: var(--gold);
+        }
+
+        .success-state h3 {
+            font-family: var(--ff-serif);
+            font-size: 1.5rem;
+            margin-bottom: 0.85rem;
+        }
+
+        .success-state p { font-size: 0.9rem; }
+
+        .success-code {
+            display: inline-block;
+            font-family: var(--ff-sans);
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.16em;
+            color: var(--navy);
+            background: var(--gold-light);
+            padding: 0.25em 0.7em;
+        }
+
+        /* ============================================================
+           FOOTER
+        ============================================================ */
+        .footer {
+            padding: var(--space-lg) var(--space-md);
+            border-top: 1px solid var(--gold-light);
+            text-align: center;
+        }
+
+        .footer__nav {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.25rem 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer__nav a {
+            font-size: 0.67rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color var(--trans);
+        }
+
+        .footer__nav a:hover { color: var(--navy); }
+
+        .footer__copy {
+            font-size: 0.7rem;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           BURGER BUTTON
+        ============================================================ */
+        .nav__burger {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            padding: 4px;
+            z-index: 250;
+        }
+
+        .nav__burger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--cream);
+            transition: background var(--trans), transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+
+        .nav.scrolled .nav__burger span { background: var(--navy); }
+
+        .nav__burger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .nav__burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav__burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* ============================================================
+           SIDEBAR DRAWER
+        ============================================================ */
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 20, 45, 0.55);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+
+        .sidebar-overlay.open {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: min(300px, 82vw);
+            background: var(--navy);
+            z-index: 400;
+            transform: translateX(-100%);
+            transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            padding: 2rem 2rem 2.5rem;
+        }
+
+        .sidebar.open { transform: translateX(0); }
+
+        .sidebar__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 3rem;
+        }
+
+        .sidebar__kk {
+            font-family: var(--ff-serif);
+            font-style: italic;
+            font-size: 1.35rem;
+            color: var(--cream);
+            letter-spacing: -0.03em;
+            text-decoration: none;
+        }
+
+        .sidebar__close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px;
+            transition: color var(--trans);
+        }
+
+        .sidebar__close:hover { color: var(--cream); }
+
+        .sidebar__nav {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar__nav li { border-bottom: 1px solid rgba(197, 180, 158, 0.18); }
+
+        .sidebar__nav li:first-child { border-top: 1px solid rgba(197, 180, 158, 0.18); }
+
+        .sidebar__nav a,
+        .sidebar__nav button {
+            display: block;
+            width: 100%;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(250, 249, 246, 0.72);
+            text-decoration: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 1.2rem 0;
+            text-align: left;
+            transition: color var(--trans), padding-left var(--trans);
+        }
+
+        .sidebar__nav a:hover,
+        .sidebar__nav button:hover {
+            color: var(--gold);
+            padding-left: 0.4rem;
+        }
+
+        .sidebar__tagline {
+            margin-top: auto;
+            font-family: var(--ff-serif);
+            font-style: italic;
+            font-size: 0.85rem;
+            color: rgba(197, 180, 158, 0.45);
+            line-height: 1.5;
+        }
+
+        body.sidebar-open { overflow: hidden; }
+
+        /* ============================================================
+           RESPONSIVE
+        ============================================================ */
+        @media (max-width: 600px) {
+            :root {
+                --space-xl:  4rem;
+                --space-xxl: 5.5rem;
+            }
+
+            .grading-grid { grid-template-columns: repeat(2, 1fr); }
+
+            .waitlist__card { padding: 2rem 1.5rem; }
+
+            .hero__cta { padding: 0.9rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ════════════════════════════════════════════════════════════════
+         NAV
+    ════════════════════════════════════════════════════════════════ -->
+    <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+        <button class="nav__burger" id="burger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <a href="#" class="nav__logo kk-logo" aria-label="Katerina's Kinis">
+            <img src="assets/IMG_8569.jpeg" alt="Katerina's Kinis">
+        </a>
+    </nav>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         SIDEBAR DRAWER
+    ════════════════════════════════════════════════════════════════ -->
+    <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+    <aside class="sidebar" id="sidebar" role="dialog" aria-modal="true" aria-label="Site navigation">
+        <div class="sidebar__top">
+            <a href="#" class="sidebar__kk" aria-label="Katerina's Kinis">
+                <img src="assets/IMG_8569.jpeg" alt="Katerina's Kinis" style="height:36px;width:auto;filter:brightness(0) invert(1);">
+            </a>
+            <button class="sidebar__close" id="sidebar-close" aria-label="Close navigation menu">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="2" y1="2" x2="16" y2="16"/>
+                    <line x1="16" y1="2" x2="2" y2="16"/>
+                </svg>
+            </button>
+        </div>
+
+        <ul class="sidebar__nav">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#collection">The Amalfi Edit</a></li>
+            <li><a href="#fit-guide">Fit Guide</a></li>
+            <li><button id="sidebar-jetset-btn">Join the Jet-Set Club</button></li>
+        </ul>
+
+        <p class="sidebar__tagline">Katerina's Kinis — Consciously crafted luxury swim essentials. Launching July 2026.</p>
+    </aside>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         JET-SET CLUB POPUP
+    ════════════════════════════════════════════════════════════════ -->
+    <div class="jetset-overlay" id="jetset-overlay" role="dialog" aria-modal="true" aria-label="Join the Jet-Set Club" aria-hidden="true">
+        <div class="jetset-modal" id="jetset-modal">
+            <button class="jetset-modal__close" id="jetset-close" aria-label="Close">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                    <line x1="2" y1="2" x2="16" y2="16"/>
+                    <line x1="16" y1="2" x2="2" y2="16"/>
+                </svg>
+            </button>
+
+            <img class="jetset-modal__kk" src="assets/IMG_8569.jpeg" alt="Katerina's Kinis" style="height:48px;width:auto;margin-bottom:0.35rem;">
+            <span class="jetset-modal__eyebrow">Katerina's Kinis &nbsp;·&nbsp; Est. 2026</span>
+            <div class="jetset-modal__rule"></div>
+            <h2>Join the Jet-Set Club</h2>
+            <p>
+                Our inaugural Amalfi Edit is strictly limited. Join the private club for 24-hour early access,
+                size-reservation priority, and a <strong>15% code</strong> applied to your first piece.
+            </p>
+
+            <div id="popup-form-block">
+                <form id="popup-waitlist-form" novalidate aria-label="Join waitlist">
+                    <div class="form-group">
+                        <label class="form-label" for="popup-field-name">First Name</label>
+                        <input class="form-input"
+                               type="text"
+                               id="popup-field-name"
+                               name="first-name"
+                               placeholder="Your first name"
+                               autocomplete="given-name"
+                               required>
+                        <span class="form-error" id="popup-err-name" role="alert">Please enter your first name.</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="popup-field-email">Email Address</label>
+                        <input class="form-input"
+                               type="email"
+                               id="popup-field-email"
+                               name="email"
+                               placeholder="your@email.com"
+                               autocomplete="email"
+                               required>
+                        <span class="form-error" id="popup-err-email" role="alert">Please enter a valid email address.</span>
+                    </div>
+                    <button type="submit" class="form-submit" id="popup-submit-btn">
+                        Unlock Private Access
+                    </button>
+                </form>
+                <p class="form-privacy">No spam. Ever. Your information is kept strictly private.</p>
+            </div>
+
+            <div class="success-state" id="popup-success-block" aria-live="polite">
+                <div class="success-icon" aria-hidden="true">✓</div>
+                <h3>Welcome to the Club.</h3>
+                <p>
+                    Your private access code <span class="success-code">JETSET15</span> has been
+                    registered to your inbox. Early entry details will arrive in July.
+                </p>
+                <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
+                    Follow along on <a href="https://www.instagram.com/katerinaskinis/" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">Instagram</a> and <a href="https://www.tiktok.com/@katerinaskinis?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">TikTok</a> for behind-the-scenes from the Amalfi.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         HERO
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="hero" id="home" aria-label="Hero">
+        <div class="hero__bg" aria-hidden="true"></div>
+        <div class="hero__vignette" aria-hidden="true"></div>
+
+        <div class="hero__content">
+            <!-- Brand identity — prominent on first load -->
+            <div class="hero__brand">
+                <img class="hero__kk" src="assets/IMG_8569.jpeg" alt="Katerina's Kinis">
+                <div class="hero__brand-rule"></div>
+                <span class="hero__brand-name">Katerina's Kinis</span>
+            </div>
+
+            <span class="hero__eyebrow">The Amalfi Edit &nbsp;·&nbsp; Est. 2026</span>
+            <p class="hero__sub">
+                Consciously crafted luxury<br>swim essentials &nbsp;·&nbsp; Launching July 2026
+            </p>
+            <button class="hero__cta" id="hero-jetset-btn">Enter the Jet-Set Club</button>
+        </div>
+
+        <div class="hero__scroll" aria-hidden="true">
+            <span>Scroll</span>
+            <div class="hero__scroll-line"></div>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         TICKER
+    ════════════════════════════════════════════════════════════════ -->
+    <div class="ticker" aria-hidden="true">
+        <div class="ticker__track">
+            <!-- Set A -->
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Tops &amp; Bottoms Sold Separately</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Tops &amp; Bottoms Sold Separately</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+            <!-- Set B (mirror of A — enables the seamless -50% loop) -->
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Tops &amp; Bottoms Sold Separately</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Tops &amp; Bottoms Sold Separately</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">The Amalfi Edit — Coming July 2026</span><span class="ticker__dot"></span></span>
+            <span class="ticker__item"><span class="ticker__text">Athena &amp; Lyra</span><span class="ticker__dot"></span></span>
+        </div>
+    </div>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         BRAND MANIFESTO
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="manifesto" aria-label="Brand statement">
+        <div class="manifesto__inner">
+            <blockquote class="manifesto__quote reveal">
+                "Designed for the woman who moves between sun-drenched terraces and the open sea —
+                where every piece is an artifact of intention."
+            </blockquote>
+            <span class="manifesto__attr reveal d1">— Katerina's Kinis, Est. 2026</span>
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         COLLECTION SHOWCASE — THE AMALFI EDIT
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="collection" id="collection" aria-labelledby="collection-heading">
+        <div class="container">
+
+            <header class="collection__header reveal">
+                <span class="section-eyebrow">First Collection</span>
+                <h2 id="collection-heading">The Amalfi Edit</h2>
+                <div class="rule rule--center"></div>
+                <p>Two defining silhouettes — the Athena and the Lyra — each a study in European proportion, structural precision, and coastal luminosity. Tops and bottoms sold separately.</p>
+            </header>
+
+            <div class="collection__grid">
+
+                <!-- ── Athena Top ── -->
+                <article class="product reveal d1">
+                    <div class="product__frame">
+                        <img src="assets/IMG_8106.jpeg"
+                             alt="Athena Top — shimmering metallic navy bandeau"
+                             loading="lazy">
+                    </div>
+                    <span class="product__piece-label">Top</span>
+                    <span class="product__tag">The Amalfi Edit &nbsp;·&nbsp; Athena</span>
+                    <h3 class="product__name">Athena Top</h3>
+                    <p class="product__desc">
+                        A deep metallic navy bandeau built with premium structural retention —
+                        perfect for long afternoons on the deck of a Riva. The Athena Top pairs
+                        with its matching bottom or mixes across the edit.
+                    </p>
+                    <div class="product__meta">
+                        Deep metallic navy &nbsp;·&nbsp; Central ruching structure &nbsp;·&nbsp; Gold-toned hardware
+                    </div>
+                </article>
+
+                <!-- ── Athena Bottom ── -->
+                <article class="product reveal d2">
+                    <div class="product__frame">
+                        <img src="assets/IMG_8106.jpeg"
+                             alt="Athena Bottom — deep metallic navy"
+                             loading="lazy">
+                    </div>
+                    <span class="product__piece-label">Bottom</span>
+                    <span class="product__tag">The Amalfi Edit &nbsp;·&nbsp; Athena</span>
+                    <h3 class="product__name">Athena Bottom</h3>
+                    <p class="product__desc">
+                        Matching the Athena Top in deep metallic navy, this bottom is built for
+                        proportion and movement. Adjustable side-tie geometry creates a flawless,
+                        personalized contour.
+                    </p>
+                    <div class="product__meta">
+                        Deep metallic navy &nbsp;·&nbsp; Adjustable side ties &nbsp;·&nbsp; High waist option
+                    </div>
+                </article>
+
+                <!-- ── Lyra Top ── -->
+                <article class="product reveal d3">
+                    <div class="product__frame">
+                        <img src="assets/IMG_8110.jpeg"
+                             alt="Lyra Top — crisp off-white twist-knot bandeau"
+                             loading="lazy">
+                    </div>
+                    <span class="product__piece-label">Top</span>
+                    <span class="product__tag">The Amalfi Edit &nbsp;·&nbsp; Lyra</span>
+                    <h3 class="product__name">Lyra Top</h3>
+                    <p class="product__desc">
+                        A classic twist on minimalist coastal elegance. The Lyra Top blends soft
+                        off-white texture with a structured twist-knot bandeau designed for effortless
+                        movement from sea to terrace.
+                    </p>
+                    <div class="product__meta">
+                        Crisp off-white &nbsp;·&nbsp; Twist-knot bandeau &nbsp;·&nbsp; Structural boning
+                    </div>
+                </article>
+
+                <!-- ── Lyra Bottom ── -->
+                <article class="product reveal d4">
+                    <div class="product__frame">
+                        <img src="assets/IMG_8110.jpeg"
+                             alt="Lyra Bottom — off-white structural side-tie"
+                             loading="lazy">
+                    </div>
+                    <span class="product__piece-label">Bottom</span>
+                    <span class="product__tag">The Amalfi Edit &nbsp;·&nbsp; Lyra</span>
+                    <h3 class="product__name">Lyra Bottom</h3>
+                    <p class="product__desc">
+                        In the same crisp off-white as the Lyra Top, with adjustable tie geometry
+                        at both hips. Engineered for a contoured, European silhouette that moves
+                        as beautifully as it looks.
+                    </p>
+                    <div class="product__meta">
+                        Crisp off-white &nbsp;·&nbsp; Structural side-tie bows &nbsp;·&nbsp; Adjustable fit
+                    </div>
+                </article>
+
+            </div><!-- /.collection__grid -->
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         FIT GUIDE
+    ════════════════════════════════════════════════════════════════ -->
+    <section class="craft" id="fit-guide" aria-labelledby="craft-heading">
+        <div class="craft__inner">
+
+            <header class="craft__header reveal">
+                <span class="section-eyebrow">Size & Fit</span>
+                <h2 id="craft-heading">Fit Guide</h2>
+                <div class="rule rule--center"></div>
+                <p>Every measurement is the result of deliberate pattern architecture.
+                   Built to tolerance, designed for movement.</p>
+            </header>
+
+            <div class="accordion reveal d1">
+
+                <!-- ── Panel 1: Base Size Dimensions ── -->
+                <div class="accordion__item">
+                    <button class="accordion__btn"
+                            aria-expanded="false"
+                            aria-controls="panel-dims"
+                            id="btn-dims">
+                        <span class="accordion__btn-label">Base Size Small (S) — Flat Dimensions</span>
+                        <span class="accordion__btn-icon" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <line x1="7" y1="1" x2="7" y2="13"/>
+                                <line x1="1" y1="7" x2="13" y2="7"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="accordion__body" id="panel-dims" role="region" aria-labelledby="btn-dims">
+                        <div class="accordion__body-inner">
+                            <p class="table-note">All measurements taken flat. Tolerance: ± 0.25 in across all dimensions.</p>
+                            <div class="size-scroll">
+                                <table class="size-table" aria-label="Base size small measurements">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Measurement Point</th>
+                                            <th scope="col">Dimension</th>
+                                            <th scope="col">Notes</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Bust Width (Relaxed)</td>
+                                            <td>14.75 in</td>
+                                            <td>Accommodates 33.5" bust with stretch</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bandeau Center Front Height</td>
+                                            <td>5.5 in</td>
+                                            <td>Vertical measurement at the twist-knot</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bandeau Side Seam Height</td>
+                                            <td>3.75 in</td>
+                                            <td>Where internal boning is located</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bottom Waist Width (Flat)</td>
+                                            <td>13 in</td>
+                                            <td>Adjustable via side ties</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Front Rise</td>
+                                            <td>8.5 in</td>
+                                            <td>Center crotch seam to top of waist</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Back Rise</td>
+                                            <td>7.75 in</td>
+                                            <td>Center crotch seam to top of waist</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /accordion__item -->
+
+                <!-- ── Panel 2: Grading Scale Matrix ── -->
+                <div class="accordion__item">
+                    <button class="accordion__btn"
+                            aria-expanded="false"
+                            aria-controls="panel-grade"
+                            id="btn-grade">
+                        <span class="accordion__btn-label">Grading Scale Matrix — Full Size Run</span>
+                        <span class="accordion__btn-icon" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <line x1="7" y1="1" x2="7" y2="13"/>
+                                <line x1="1" y1="7" x2="13" y2="7"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="accordion__body" id="panel-grade" role="region" aria-labelledby="btn-grade">
+                        <div class="accordion__body-inner">
+                            <p class="table-note">
+                                Grading increments applied uniformly relative to base size (S).
+                                Circumference grading: bust and waist. Length grading: all vertical dimensions.
+                            </p>
+                            <div class="grading-grid">
+                                <div class="grade-card">
+                                    <div class="grade-card__size">XS</div>
+                                    <div class="grade-card__spec">
+                                        −1.0 in circumference<br>
+                                        −0.25 in length<br>
+                                        <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                                    </div>
+                                </div>
+                                <div class="grade-card grade-card--base">
+                                    <div class="grade-card__size">S</div>
+                                    <div class="grade-card__spec">
+                                        Base reference size<br>
+                                        Dims as specified above<br>
+                                        <span style="font-size:.65rem;">Base Pattern</span>
+                                    </div>
+                                </div>
+                                <div class="grade-card">
+                                    <div class="grade-card__size">M</div>
+                                    <div class="grade-card__spec">
+                                        +1.0 in circumference<br>
+                                        +0.25 in length<br>
+                                        <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                                    </div>
+                                </div>
+                                <div class="grade-card">
+                                    <div class="grade-card__size">L</div>
+                                    <div class="grade-card__spec">
+                                        +2.0 in circumference<br>
+                                        +0.50 in length<br>
+                                        <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                                    </div>
+                                </div>
+                                <div class="grade-card">
+                                    <div class="grade-card__size">XL</div>
+                                    <div class="grade-card__spec">
+                                        +3.0 in circumference<br>
+                                        +0.75 in length<br>
+                                        <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /accordion__item -->
+
+                <!-- ── Panel 3: Technical Specification Sheet ── -->
+                <div class="accordion__item">
+                    <button class="accordion__btn"
+                            aria-expanded="false"
+                            aria-controls="panel-spec"
+                            id="btn-spec">
+                        <span class="accordion__btn-label">Technical Specification Sheet</span>
+                        <span class="accordion__btn-icon" aria-hidden="true">
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
+                                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+                                <line x1="7" y1="1" x2="7" y2="13"/>
+                                <line x1="1" y1="7" x2="13" y2="7"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="accordion__body" id="panel-spec" role="region" aria-labelledby="btn-spec">
+                        <div class="accordion__body-inner">
+                            <p class="table-note">
+                                Full design package — pattern architecture, construction notation, and measurement callouts.
+                            </p>
+                            <!--
+                                ASSET PLACEMENT — Spec Sheet
+                                Replace this <div class="spec-placeholder"> block with:
+                                <img src="assets/01547998-7DE0-4BA2-AE47-D249DF971584.jpg"
+                                     alt="Technical specification sheet — Katerina's Kinis base pattern"
+                                     style="width:100%;border:1px solid rgba(197,180,158,0.3);" />
+                            -->
+                            <div class="spec-placeholder" aria-label="Technical spec sheet image placeholder">
+                                <svg width="36" height="36" viewBox="0 0 24 24" fill="none"
+                                     stroke="rgba(197,180,158,0.6)" stroke-width="1" stroke-linecap="round">
+                                    <rect x="3" y="3" width="18" height="18" rx="1.5"/>
+                                    <path d="M3 9h18M9 21V9"/>
+                                </svg>
+                                <span>Technical Specification Sheet</span>
+                                <span class="spec-filename">01547998-7DE0-4BA2-AE47-D249DF971584.jpg</span>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /accordion__item -->
+
+            </div><!-- /.accordion -->
+
+        </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════════════════
+         FOOTER
+    ════════════════════════════════════════════════════════════════ -->
+    <footer class="footer" role="contentinfo">
+        <a href="#" class="footer__logo" aria-label="Katerina's Kinis">
+            <img src="assets/IMG_8569.jpeg" alt="Katerina's Kinis">
+            <span class="footer__logo-name">Katerina's Kinis</span>
+        </a>
+        <ul class="footer__nav" aria-label="Footer links">
+            <li><a href="#">Journal</a></li>
+            <li><a href="https://www.instagram.com/katerinaskinis/" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+            <li><a href="https://www.tiktok.com/@katerinaskinis?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="footer__copy">© 2026 Katerina's Kinis. All Rights Reserved.</p>
+    </footer>
+
+
+    <script>
+        /* ────────────────────────────────────────────────────────────
+           NAV — add scrolled class once user leaves the hero
+        ──────────────────────────────────────────────────────────── */
+        (function () {
+            const nav = document.getElementById('nav');
+
+            function tick() {
+                nav.classList.toggle('scrolled', window.scrollY > 55);
+            }
+
+            window.addEventListener('scroll', tick, { passive: true });
+            tick();
+        }());
+
+
+        /* ────────────────────────────────────────────────────────────
+           SCROLL REVEAL — IntersectionObserver for .reveal elements
+        ──────────────────────────────────────────────────────────── */
+        (function () {
+            const io = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('in-view');
+                            io.unobserve(entry.target);
+                        }
+                    });
+                },
+                { threshold: 0.1 }
+            );
+
+            document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        }());
+
+
+        /* ────────────────────────────────────────────────────────────
+           ACCORDION — exclusive open/close with ARIA
+        ──────────────────────────────────────────────────────────── */
+        (function () {
+            const buttons = document.querySelectorAll('.accordion__btn');
+
+            buttons.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const wasOpen   = this.classList.contains('open');
+                    const bodyId    = this.getAttribute('aria-controls');
+                    const body      = document.getElementById(bodyId);
+
+                    buttons.forEach(b => {
+                        b.classList.remove('open');
+                        b.setAttribute('aria-expanded', 'false');
+                        document.getElementById(b.getAttribute('aria-controls'))
+                                .classList.remove('open');
+                    });
+
+                    if (!wasOpen) {
+                        this.classList.add('open');
+                        this.setAttribute('aria-expanded', 'true');
+                        body.classList.add('open');
+                    }
+                });
+            });
+        }());
+
+
+        /* ────────────────────────────────────────────────────────────
+           JET-SET CLUB POPUP — open / close / form submission
+        ──────────────────────────────────────────────────────────── */
+        (function () {
+            const overlay     = document.getElementById('jetset-overlay');
+            const closeBtn    = document.getElementById('jetset-close');
+            const heroBtn     = document.getElementById('hero-jetset-btn');
+            const sidebarBtn  = document.getElementById('sidebar-jetset-btn');
+            const form        = document.getElementById('popup-waitlist-form');
+            const nameIn      = document.getElementById('popup-field-name');
+            const emailIn     = document.getElementById('popup-field-email');
+            const errName     = document.getElementById('popup-err-name');
+            const errEmail    = document.getElementById('popup-err-email');
+            const submitBtn   = document.getElementById('popup-submit-btn');
+            const formBlock   = document.getElementById('popup-form-block');
+            const successEl   = document.getElementById('popup-success-block');
+
+            const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const SESSION_KEY = 'kk_jetset_shown';
+
+            function openPopup() {
+                overlay.classList.add('open');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.style.overflow = 'hidden';
+                closeBtn.focus();
+            }
+
+            function closePopup() {
+                overlay.classList.remove('open');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+            }
+
+            closeBtn.addEventListener('click', closePopup);
+            heroBtn.addEventListener('click', openPopup);
+            sidebarBtn.addEventListener('click', function () {
+                /* Close sidebar first then open popup */
+                document.getElementById('sidebar').classList.remove('open');
+                document.getElementById('sidebar-overlay').classList.remove('open');
+                document.getElementById('burger-btn').classList.remove('open');
+                document.getElementById('burger-btn').setAttribute('aria-expanded', 'false');
+                document.getElementById('sidebar').setAttribute('aria-hidden', 'true');
+                document.getElementById('sidebar-overlay').setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('sidebar-open');
+                openPopup();
+            });
+
+            /* Close when clicking the backdrop (outside modal) */
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) closePopup();
+            });
+
+            /* Close on Escape */
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('open')) closePopup();
+            });
+
+            /* Auto-show on first visit per session (after hero animations settle) */
+            if (!sessionStorage.getItem(SESSION_KEY)) {
+                setTimeout(function () {
+                    openPopup();
+                    sessionStorage.setItem(SESSION_KEY, '1');
+                }, 2200);
+            }
+
+            /* Form validation + mock submission */
+            function markErr(input, msg) {
+                input.classList.add('is-error');
+                msg.classList.add('show');
+            }
+
+            function clearErr(input, msg) {
+                input.classList.remove('is-error');
+                msg.classList.remove('show');
+            }
+
+            nameIn.addEventListener('input',  () => clearErr(nameIn,  errName));
+            emailIn.addEventListener('input', () => clearErr(emailIn, errEmail));
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name  = nameIn.value.trim();
+                const email = emailIn.value.trim();
+                let ok = true;
+
+                if (!name) { markErr(nameIn, errName); ok = false; }
+                else        { clearErr(nameIn, errName); }
+
+                if (!EMAIL_RE.test(email)) { markErr(emailIn, errEmail); ok = false; }
+                else                        { clearErr(emailIn, errEmail); }
+
+                if (!ok) return;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Processing…';
+
+                fetch('https://a.klaviyo.com/client/subscriptions/?company_id=YpD5LG', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'revision': '2024-02-15'
+                    },
+                    body: JSON.stringify({
+                        data: {
+                            type: 'subscription',
+                            attributes: {
+                                list_id: 'SiJFQa',
+                                profile: {
+                                    data: {
+                                        type: 'profile',
+                                        attributes: {
+                                            email: email,
+                                            first_name: name
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                })
+                .then(function (res) {
+                    if (!res.ok && res.status !== 202) throw new Error('Klaviyo error');
+                    formBlock.style.transition = 'opacity 0.45s ease';
+                    formBlock.style.opacity    = '0';
+
+                    setTimeout(function () {
+                        formBlock.style.display = 'none';
+                        successEl.classList.add('show');
+
+                        requestAnimationFrame(function () {
+                            requestAnimationFrame(function () {
+                                successEl.classList.add('animate');
+                            });
+                        });
+                    }, 460);
+                })
+                .catch(function () {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Unlock Private Access';
+                    errEmail.textContent = 'Something went wrong — please try again.';
+                    errEmail.classList.add('show');
+                });
+            });
+        }());
+
+
+        /* ────────────────────────────────────────────────────────────
+           SIDEBAR — open / close / close-on-nav-click
+        ──────────────────────────────────────────────────────────── */
+        (function () {
+            const burgerBtn  = document.getElementById('burger-btn');
+            const sidebar    = document.getElementById('sidebar');
+            const overlay    = document.getElementById('sidebar-overlay');
+            const closeBtn   = document.getElementById('sidebar-close');
+            const sideLinks  = sidebar.querySelectorAll('a');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('open');
+                burgerBtn.classList.add('open');
+                burgerBtn.setAttribute('aria-expanded', 'true');
+                sidebar.setAttribute('aria-hidden', 'false');
+                overlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('sidebar-open');
+                closeBtn.focus();
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+                burgerBtn.classList.remove('open');
+                burgerBtn.setAttribute('aria-expanded', 'false');
+                sidebar.setAttribute('aria-hidden', 'true');
+                overlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('sidebar-open');
+                burgerBtn.focus();
+            }
+
+            burgerBtn.addEventListener('click', function () {
+                sidebar.classList.contains('open') ? closeSidebar() : openSidebar();
+            });
+
+            closeBtn.addEventListener('click', closeSidebar);
+            overlay.addEventListener('click', closeSidebar);
+
+            sideLinks.forEach(function (link) {
+                link.addEventListener('click', closeSidebar);
+            });
+
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('open')) {
+                    closeSidebar();
+                }
+            });
+        }());
+    </script>
+
+</body>
+</html>
