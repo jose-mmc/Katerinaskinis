@@ -39,7 +39,7 @@
         "card-1": {
           "type": "product_card",
           "settings": {
-            "image_asset": "IMG_8106.jpeg",
+            "image_asset": "navy-top.png",
             "piece_label": "Top",
             "tag": "The Amalfi Edit · Athena",
             "name": "Athena Top",
@@ -50,7 +50,7 @@
         "card-2": {
           "type": "product_card",
           "settings": {
-            "image_asset": "IMG_8106.jpeg",
+            "image_asset": "navy-bottom.png",
             "piece_label": "Bottom",
             "tag": "The Amalfi Edit · Athena",
             "name": "Athena Bottom",
@@ -61,7 +61,7 @@
         "card-3": {
           "type": "product_card",
           "settings": {
-            "image_asset": "IMG_8110.jpeg",
+            "image_asset": "cream-top.png",
             "piece_label": "Top",
             "tag": "The Amalfi Edit · Lyra",
             "name": "Lyra Top",
@@ -72,7 +72,7 @@
         "card-4": {
           "type": "product_card",
           "settings": {
-            "image_asset": "IMG_8110.jpeg",
+            "image_asset": "cream-bottom.png",
             "piece_label": "Bottom",
             "tag": "The Amalfi Edit · Lyra",
             "name": "Lyra Bottom",
