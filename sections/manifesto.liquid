@@ -1,0 +1,33 @@
+<section class="manifesto" aria-label="Brand statement">
+  <div class="manifesto__inner">
+    <blockquote class="manifesto__quote reveal">
+      {{ section.settings.quote }}
+    </blockquote>
+    <span class="manifesto__attr reveal d1">{{ section.settings.attribution }}</span>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Manifesto",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "quote",
+      "label": "Quote",
+      "default": "\"Designed for the woman who moves between sun-drenched terraces and the open sea — where every piece is an artifact of intention.\""
+    },
+    {
+      "type": "text",
+      "id": "attribution",
+      "label": "Attribution",
+      "default": "— Katerina's Kinis, Est. 2026"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Manifesto"
+    }
+  ]
+}
+{% endschema %}

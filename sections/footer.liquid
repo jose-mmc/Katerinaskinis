@@ -1,0 +1,55 @@
+<footer class="footer" role="contentinfo">
+  <a href="{{ routes.root_url }}" class="footer__logo" aria-label="{{ section.settings.brand_name }}">
+    {%- if section.settings.logo != blank -%}
+      <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ section.settings.brand_name }}">
+    {%- else -%}
+      <img src="{{ 'IMG_8569.jpeg' | asset_url }}" alt="{{ section.settings.brand_name }}">
+    {%- endif -%}
+    <span class="footer__logo-name">{{ section.settings.brand_name }}</span>
+  </a>
+
+  <ul class="footer__nav" aria-label="Footer links">
+    <li><a href="{{ section.settings.journal_url | default: '#' }}">Journal</a></li>
+    <li><a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+    <li><a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+    <li><a href="{{ pages['privacy-policy'].url | default: routes.root_url }}">Privacy Policy</a></li>
+  </ul>
+
+  <p class="footer__copy">© {{ 'now' | date: '%Y' }} {{ section.settings.brand_name }}. All Rights Reserved.</p>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Katerina's Kinis"
+    },
+    {
+      "type": "url",
+      "id": "journal_url",
+      "label": "Journal link"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL",
+      "default": "https://www.instagram.com/katerinaskinis/"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL",
+      "default": "https://www.tiktok.com/@katerinaskinis"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {}
+    },
+    "ticker": {
+      "type": "ticker",
+      "blocks": {
+        "item-1": {
+          "type": "item",
+          "settings": {
+            "text": "The Amalfi Edit — Coming July 2026"
+          }
+        },
+        "item-2": {
+          "type": "item",
+          "settings": {
+            "text": "Athena & Lyra"
+          }
+        },
+        "item-3": {
+          "type": "item",
+          "settings": {
+            "text": "Tops & Bottoms Sold Separately"
+          }
+        }
+      },
+      "block_order": ["item-1", "item-2", "item-3"],
+      "settings": {}
+    },
+    "manifesto": {
+      "type": "manifesto",
+      "settings": {}
+    },
+    "collection": {
+      "type": "collection-showcase",
+      "blocks": {
+        "card-1": {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8106.jpeg",
+            "piece_label": "Top",
+            "tag": "The Amalfi Edit · Athena",
+            "name": "Athena Top",
+            "description": "A deep metallic navy bandeau built with premium structural retention — perfect for long afternoons on the deck of a Riva. The Athena Top pairs with its matching bottom or mixes across the edit.",
+            "meta": "Deep metallic navy · Central ruching structure · Gold-toned hardware"
+          }
+        },
+        "card-2": {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8106.jpeg",
+            "piece_label": "Bottom",
+            "tag": "The Amalfi Edit · Athena",
+            "name": "Athena Bottom",
+            "description": "Matching the Athena Top in deep metallic navy, this bottom is built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
+            "meta": "Deep metallic navy · Adjustable side ties · High waist option"
+          }
+        },
+        "card-3": {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8110.jpeg",
+            "piece_label": "Top",
+            "tag": "The Amalfi Edit · Lyra",
+            "name": "Lyra Top",
+            "description": "A classic twist on minimalist coastal elegance. The Lyra Top blends soft off-white texture with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
+            "meta": "Crisp off-white · Twist-knot bandeau · Structural boning"
+          }
+        },
+        "card-4": {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8110.jpeg",
+            "piece_label": "Bottom",
+            "tag": "The Amalfi Edit · Lyra",
+            "name": "Lyra Bottom",
+            "description": "In the same crisp off-white as the Lyra Top, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
+            "meta": "Crisp off-white · Structural side-tie bows · Adjustable fit"
+          }
+        }
+      },
+      "block_order": ["card-1", "card-2", "card-3", "card-4"],
+      "settings": {}
+    },
+    "fit-guide": {
+      "type": "fit-guide",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "ticker", "manifesto", "collection", "fit-guide"]
+}

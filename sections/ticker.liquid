@@ -1,0 +1,50 @@
+<div class="ticker" aria-hidden="true">
+  <div class="ticker__track">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'item' -%}
+        <span class="ticker__item">
+          <span class="ticker__text">{{ block.settings.text }}</span>
+          <span class="ticker__dot"></span>
+        </span>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'item' -%}
+        <span class="ticker__item">
+          <span class="ticker__text">{{ block.settings.text }}</span>
+          <span class="ticker__dot"></span>
+        </span>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Ticker",
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "New item"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ticker",
+      "blocks": [
+        { "type": "item", "settings": { "text": "The Amalfi Edit — Coming July 2026" } },
+        { "type": "item", "settings": { "text": "Athena & Lyra" } },
+        { "type": "item", "settings": { "text": "Tops & Bottoms Sold Separately" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

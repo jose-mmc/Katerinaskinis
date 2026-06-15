@@ -1,0 +1,68 @@
+<nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+  <button class="nav__burger" id="burger-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="sidebar">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <a href="{{ routes.root_url }}" class="nav__logo kk-logo" aria-label="{{ section.settings.brand_name }}">
+    {%- if section.settings.logo != blank -%}
+      <img src="{{ section.settings.logo | image_url: width: 300 }}" alt="{{ section.settings.brand_name }}" width="300">
+    {%- else -%}
+      <img src="{{ 'IMG_8569.jpeg' | asset_url }}" alt="{{ section.settings.brand_name }}">
+    {%- endif -%}
+  </a>
+</nav>
+
+<div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+
+<aside class="sidebar" id="sidebar" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="sidebar__top">
+    <a href="{{ routes.root_url }}" class="sidebar__kk" aria-label="{{ section.settings.brand_name }}">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ section.settings.brand_name }}" style="height:36px;width:auto;filter:brightness(0) invert(1);">
+      {%- else -%}
+        <img src="{{ 'IMG_8569.jpeg' | asset_url }}" alt="{{ section.settings.brand_name }}" style="height:36px;width:auto;filter:brightness(0) invert(1);">
+      {%- endif -%}
+    </a>
+    <button class="sidebar__close" id="sidebar-close" aria-label="Close navigation menu">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="2" y1="2" x2="16" y2="16"/>
+        <line x1="16" y1="2" x2="2" y2="16"/>
+      </svg>
+    </button>
+  </div>
+
+  <ul class="sidebar__nav">
+    <li><a href="{{ routes.root_url }}">Home</a></li>
+    <li><a href="#collection">The Amalfi Edit</a></li>
+    <li><a href="#fit-guide">Fit Guide</a></li>
+    <li><button id="sidebar-jetset-btn">Join the Jet-Set Club</button></li>
+  </ul>
+
+  <p class="sidebar__tagline">{{ section.settings.tagline }}</p>
+</aside>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Katerina's Kinis"
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Sidebar tagline",
+      "default": "Katerina's Kinis — Consciously crafted luxury swim essentials. Launching July 2026."
+    }
+  ]
+}
+{% endschema %}

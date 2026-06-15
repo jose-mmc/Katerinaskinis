@@ -1,0 +1,161 @@
+<section class="collection" id="collection" aria-labelledby="collection-heading">
+  <div class="container">
+
+    <header class="collection__header reveal">
+      <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 id="collection-heading">{{ section.settings.heading }}</h2>
+      <div class="rule rule--center"></div>
+      <p>{{ section.settings.subheading }}</p>
+    </header>
+
+    <div class="collection__grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'product_card' -%}
+          <article class="product reveal d{{ forloop.index }}" {{ block.shopify_attributes }}>
+            <div class="product__frame">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 800 }}"
+                     alt="{{ block.settings.name }}"
+                     loading="lazy">
+              {%- else -%}
+                <img src="{{ block.settings.image_asset | asset_url }}"
+                     alt="{{ block.settings.name }}"
+                     loading="lazy">
+              {%- endif -%}
+            </div>
+            <span class="product__piece-label">{{ block.settings.piece_label }}</span>
+            <span class="product__tag">{{ block.settings.tag }}</span>
+            <h3 class="product__name">{{ block.settings.name }}</h3>
+            <p class="product__desc">{{ block.settings.description }}</p>
+            <div class="product__meta">{{ block.settings.meta }}</div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "First Collection"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "The Amalfi Edit"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Two defining silhouettes — the Athena and the Lyra — each a study in European proportion, structural precision, and coastal luminosity. Tops and bottoms sold separately."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product image"
+        },
+        {
+          "type": "text",
+          "id": "image_asset",
+          "label": "Fallback asset filename",
+          "info": "Filename of image in assets/ folder (used if no image uploaded above)"
+        },
+        {
+          "type": "text",
+          "id": "piece_label",
+          "label": "Piece label (e.g. Top, Bottom)",
+          "default": "Top"
+        },
+        {
+          "type": "text",
+          "id": "tag",
+          "label": "Tag line",
+          "default": "The Amalfi Edit · Athena"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Product name",
+          "default": "Athena Top"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta details"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Showcase",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8106.jpeg",
+            "piece_label": "Top",
+            "tag": "The Amalfi Edit · Athena",
+            "name": "Athena Top",
+            "description": "A deep metallic navy bandeau built with premium structural retention — perfect for long afternoons on the deck of a Riva. The Athena Top pairs with its matching bottom or mixes across the edit.",
+            "meta": "Deep metallic navy · Central ruching structure · Gold-toned hardware"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8106.jpeg",
+            "piece_label": "Bottom",
+            "tag": "The Amalfi Edit · Athena",
+            "name": "Athena Bottom",
+            "description": "Matching the Athena Top in deep metallic navy, this bottom is built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
+            "meta": "Deep metallic navy · Adjustable side ties · High waist option"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8110.jpeg",
+            "piece_label": "Top",
+            "tag": "The Amalfi Edit · Lyra",
+            "name": "Lyra Top",
+            "description": "A classic twist on minimalist coastal elegance. The Lyra Top blends soft off-white texture with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
+            "meta": "Crisp off-white · Twist-knot bandeau · Structural boning"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "image_asset": "IMG_8110.jpeg",
+            "piece_label": "Bottom",
+            "tag": "The Amalfi Edit · Lyra",
+            "name": "Lyra Bottom",
+            "description": "In the same crisp off-white as the Lyra Top, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
+            "meta": "Crisp off-white · Structural side-tie bows · Adjustable fit"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

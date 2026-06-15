@@ -1,0 +1,72 @@
+<section class="hero" id="home" aria-label="Hero">
+  <div class="hero__bg" aria-hidden="true" style="background-image: url('{{ section.settings.background_image | image_url: width: 1920 | default: "https://images.unsplash.com/photo-1568282167464-cb0d811b05c2?w=1920&q=85&auto=format&fit=crop" }}');"></div>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <div class="hero__brand">
+      {%- if section.settings.logo != blank -%}
+        <img class="hero__kk" src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ section.settings.brand_name }}">
+      {%- else -%}
+        <img class="hero__kk" src="{{ 'IMG_8569.jpeg' | asset_url }}" alt="{{ section.settings.brand_name }}">
+      {%- endif -%}
+      <div class="hero__brand-rule"></div>
+      <span class="hero__brand-name">{{ section.settings.brand_name }}</span>
+    </div>
+
+    <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
+    <p class="hero__sub">{{ section.settings.subheading }}</p>
+    <button class="hero__cta" id="hero-jetset-btn">{{ section.settings.cta_label }}</button>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="hero__scroll-line"></div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Brand logo"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Katerina's Kinis"
+    },
+    {
+      "type": "image_picker",
+      "id": "background_image",
+      "label": "Background image"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "The Amalfi Edit · Est. 2026"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Consciously crafted luxury swim essentials · Launching July 2026"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Enter the Jet-Set Club"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,218 @@
+<section class="craft" id="fit-guide" aria-labelledby="craft-heading">
+  <div class="craft__inner">
+
+    <header class="craft__header reveal">
+      <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 id="craft-heading">{{ section.settings.heading }}</h2>
+      <div class="rule rule--center"></div>
+      <p>{{ section.settings.subheading }}</p>
+    </header>
+
+    <div class="accordion reveal d1">
+
+      <!-- Panel 1: Base Size Dimensions -->
+      <div class="accordion__item">
+        <button class="accordion__btn"
+                aria-expanded="false"
+                aria-controls="panel-dims"
+                id="btn-dims">
+          <span class="accordion__btn-label">Base Size Small (S) — Flat Dimensions</span>
+          <span class="accordion__btn-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="7" y1="1" x2="7" y2="13"/>
+              <line x1="1" y1="7" x2="13" y2="7"/>
+            </svg>
+          </span>
+        </button>
+        <div class="accordion__body" id="panel-dims" role="region" aria-labelledby="btn-dims">
+          <div class="accordion__body-inner">
+            <p class="table-note">All measurements taken flat. Tolerance: ± 0.25 in across all dimensions.</p>
+            <div class="size-scroll">
+              <table class="size-table" aria-label="Base size small measurements">
+                <thead>
+                  <tr>
+                    <th scope="col">Measurement Point</th>
+                    <th scope="col">Dimension</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Bust Width (Relaxed)</td>
+                    <td>14.75 in</td>
+                    <td>Accommodates 33.5" bust with stretch</td>
+                  </tr>
+                  <tr>
+                    <td>Bandeau Center Front Height</td>
+                    <td>5.5 in</td>
+                    <td>Vertical measurement at the twist-knot</td>
+                  </tr>
+                  <tr>
+                    <td>Bandeau Side Seam Height</td>
+                    <td>3.75 in</td>
+                    <td>Where internal boning is located</td>
+                  </tr>
+                  <tr>
+                    <td>Bottom Waist Width (Flat)</td>
+                    <td>13 in</td>
+                    <td>Adjustable via side ties</td>
+                  </tr>
+                  <tr>
+                    <td>Front Rise</td>
+                    <td>8.5 in</td>
+                    <td>Center crotch seam to top of waist</td>
+                  </tr>
+                  <tr>
+                    <td>Back Rise</td>
+                    <td>7.75 in</td>
+                    <td>Center crotch seam to top of waist</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Grading Scale Matrix -->
+      <div class="accordion__item">
+        <button class="accordion__btn"
+                aria-expanded="false"
+                aria-controls="panel-grade"
+                id="btn-grade">
+          <span class="accordion__btn-label">Grading Scale Matrix — Full Size Run</span>
+          <span class="accordion__btn-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="7" y1="1" x2="7" y2="13"/>
+              <line x1="1" y1="7" x2="13" y2="7"/>
+            </svg>
+          </span>
+        </button>
+        <div class="accordion__body" id="panel-grade" role="region" aria-labelledby="btn-grade">
+          <div class="accordion__body-inner">
+            <p class="table-note">
+              Grading increments applied uniformly relative to base size (S).
+              Circumference grading: bust and waist. Length grading: all vertical dimensions.
+            </p>
+            <div class="grading-grid">
+              <div class="grade-card">
+                <div class="grade-card__size">XS</div>
+                <div class="grade-card__spec">
+                  −1.0 in circumference<br>
+                  −0.25 in length<br>
+                  <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                </div>
+              </div>
+              <div class="grade-card grade-card--base">
+                <div class="grade-card__size">S</div>
+                <div class="grade-card__spec">
+                  Base reference size<br>
+                  Dims as specified above<br>
+                  <span style="font-size:.65rem;">Base Pattern</span>
+                </div>
+              </div>
+              <div class="grade-card">
+                <div class="grade-card__size">M</div>
+                <div class="grade-card__spec">
+                  +1.0 in circumference<br>
+                  +0.25 in length<br>
+                  <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                </div>
+              </div>
+              <div class="grade-card">
+                <div class="grade-card__size">L</div>
+                <div class="grade-card__spec">
+                  +2.0 in circumference<br>
+                  +0.50 in length<br>
+                  <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                </div>
+              </div>
+              <div class="grade-card">
+                <div class="grade-card__size">XL</div>
+                <div class="grade-card__spec">
+                  +3.0 in circumference<br>
+                  +0.75 in length<br>
+                  <span style="opacity:.6;font-size:.65rem;">vs. S base</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Technical Specification Sheet -->
+      <div class="accordion__item">
+        <button class="accordion__btn"
+                aria-expanded="false"
+                aria-controls="panel-spec"
+                id="btn-spec">
+          <span class="accordion__btn-label">Technical Specification Sheet</span>
+          <span class="accordion__btn-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+              <line x1="7" y1="1" x2="7" y2="13"/>
+              <line x1="1" y1="7" x2="13" y2="7"/>
+            </svg>
+          </span>
+        </button>
+        <div class="accordion__body" id="panel-spec" role="region" aria-labelledby="btn-spec">
+          <div class="accordion__body-inner">
+            <p class="table-note">
+              Full design package — pattern architecture, construction notation, and measurement callouts.
+            </p>
+            {%- if section.settings.spec_sheet != blank -%}
+              <img src="{{ section.settings.spec_sheet | image_url: width: 1200 }}"
+                   alt="Technical specification sheet — Katerina's Kinis base pattern"
+                   style="width:100%;border:1px solid rgba(197,180,158,0.3);">
+            {%- else -%}
+              <div class="spec-placeholder" aria-label="Technical spec sheet image placeholder">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="rgba(197,180,158,0.6)" stroke-width="1" stroke-linecap="round">
+                  <rect x="3" y="3" width="18" height="18" rx="1.5"/>
+                  <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span>Technical Specification Sheet</span>
+                <span class="spec-filename">Upload spec sheet image in theme editor</span>
+              </div>
+            {%- endif -%}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Fit Guide",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Size & Fit"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fit Guide"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Every measurement is the result of deliberate pattern architecture. Built to tolerance, designed for movement."
+    },
+    {
+      "type": "image_picker",
+      "id": "spec_sheet",
+      "label": "Technical spec sheet image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Fit Guide"
+    }
+  ]
+}
+{% endschema %}
