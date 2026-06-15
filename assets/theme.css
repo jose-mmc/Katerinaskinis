@@ -154,8 +154,8 @@ p {
 }
 
 .footer__logo img {
-    height: 52px;
-    width: auto;
+    max-width: 180px;
+    height: auto;
 }
 
 .footer__logo-name {
@@ -288,8 +288,8 @@ p {
 }
 
 .hero__kk {
-    height: clamp(90px, 16vw, 160px);
-    width: auto;
+    max-width: clamp(200px, 42vw, 360px);
+    height: auto;
     filter: brightness(0) invert(1) drop-shadow(0 4px 40px rgba(10, 20, 50, 0.6));
 }
 

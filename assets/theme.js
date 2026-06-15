@@ -109,9 +109,21 @@
     });
 
     if (!sessionStorage.getItem(SESSION_KEY)) {
+        // Open on first click anywhere on the page
+        document.addEventListener('click', function (e) {
+            if (overlay.classList.contains('open')) return;
+            if (!sessionStorage.getItem(SESSION_KEY)) {
+                openPopup();
+                sessionStorage.setItem(SESSION_KEY, '1');
+            }
+        }, { once: true });
+
+        // Fallback: also open after 2.2s if user hasn't clicked yet
         setTimeout(function () {
-            openPopup();
-            sessionStorage.setItem(SESSION_KEY, '1');
+            if (!sessionStorage.getItem(SESSION_KEY)) {
+                openPopup();
+                sessionStorage.setItem(SESSION_KEY, '1');
+            }
         }, 2200);
     }
 
@@ -188,7 +200,7 @@
         })
         .catch(function () {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Unlock Private Access';
+            submitBtn.textContent = 'Claim My 15% Off';
             errEmail.textContent = 'Something went wrong — please try again.';
             errEmail.classList.add('show');
         });

@@ -10,7 +10,7 @@
     {%- if section.settings.logo != blank -%}
       <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ section.settings.brand_name }}" style="height:48px;width:auto;margin-bottom:0.35rem;">
     {%- else -%}
-      <img src="{{ 'IMG_8569.jpeg' | asset_url }}" alt="{{ section.settings.brand_name }}" style="height:48px;width:auto;margin-bottom:0.35rem;">
+      <img src="{{ 'horizontal-navy.png' | asset_url }}" alt="{{ section.settings.brand_name }}" style="height:36px;width:auto;margin-bottom:0.35rem;">
     {%- endif -%}
 
     <span class="jetset-modal__eyebrow">{{ section.settings.brand_name }} &nbsp;·&nbsp; Est. 2026</span>
@@ -43,7 +43,7 @@
           <span class="form-error" id="popup-err-email" role="alert">Please enter a valid email address.</span>
         </div>
         <button type="submit" class="form-submit" id="popup-submit-btn">
-          Unlock Private Access
+          Claim My 15% Off
         </button>
       </form>
       <p class="form-privacy">No spam. Ever. Your information is kept strictly private.</p>
@@ -83,13 +83,13 @@
       "type": "text",
       "id": "heading",
       "label": "Popup heading",
-      "default": "Join the Jet-Set Club"
+      "default": "Get 15% Off Your First Order"
     },
     {
       "type": "textarea",
       "id": "body_text",
       "label": "Popup body",
-      "default": "Our inaugural Amalfi Edit is strictly limited. Join the private club for 24-hour early access, size-reservation priority, and a 15% code applied to your first piece."
+      "default": "Join the presale list for The Amalfi Edit and we'll send your exclusive 15% discount code straight to your inbox — plus first access when we launch."
     },
     {
       "type": "url",
