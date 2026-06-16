@@ -7,16 +7,12 @@
       </svg>
     </button>
 
-    {%- if section.settings.logo != blank -%}
-      <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ section.settings.brand_name }}" style="height:48px;width:auto;margin-bottom:0.35rem;">
-    {%- else -%}
-      <img src="{{ 'horizontal-navy.png' | asset_url }}" alt="{{ section.settings.brand_name }}" style="height:36px;width:auto;margin-bottom:0.35rem;">
-    {%- endif -%}
+    <img src="{{ 'horizontal-navy.png' | asset_url }}" alt="Katerina's Kinis" style="height:36px;width:auto;margin-bottom:0.35rem;">
 
-    <span class="jetset-modal__eyebrow">{{ section.settings.brand_name }} &nbsp;·&nbsp; Est. 2026</span>
+    <span class="jetset-modal__eyebrow">Katerina's Kinis &nbsp;·&nbsp; Est. 2026</span>
     <div class="jetset-modal__rule"></div>
-    <h2>{{ section.settings.heading }}</h2>
-    <p>{{ section.settings.body_text }}</p>
+    <h2>Get 15% Off Your First Order</h2>
+    <p>Join the presale list for The Amalfi Edit and we'll send your exclusive 15% discount code straight to your inbox - plus first access when we launch.</p>
 
     <div id="popup-form-block">
       <form id="popup-waitlist-form" novalidate aria-label="Join waitlist">
@@ -57,52 +53,9 @@
         registered to your inbox. Early entry details will arrive in July.
       </p>
       <p style="margin-top: 1rem; font-size: 0.8rem; color: var(--text-muted);">
-        Follow along on <a href="{{ section.settings.instagram_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">Instagram</a>
-        and <a href="{{ section.settings.tiktok_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">TikTok</a> for behind-the-scenes from the Amalfi.
+        Follow along on <a href="https://www.instagram.com/katerinaskinis/" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">Instagram</a>
+        and <a href="https://www.tiktok.com/@katerinaskinis" target="_blank" rel="noopener noreferrer" style="color:var(--navy);">TikTok</a> for behind-the-scenes from the Amalfi.
       </p>
     </div>
   </div>
 </div>
-
-{% schema %}
-{
-  "name": "Jet-Set Club Popup",
-  "settings": [
-    {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Logo image"
-    },
-    {
-      "type": "text",
-      "id": "brand_name",
-      "label": "Brand name",
-      "default": "Katerina's Kinis"
-    },
-    {
-      "type": "text",
-      "id": "heading",
-      "label": "Popup heading",
-      "default": "Get 15% Off Your First Order"
-    },
-    {
-      "type": "textarea",
-      "id": "body_text",
-      "label": "Popup body",
-      "default": "Join the presale list for The Amalfi Edit and we'll send your exclusive 15% discount code straight to your inbox — plus first access when we launch."
-    },
-    {
-      "type": "url",
-      "id": "instagram_url",
-      "label": "Instagram URL",
-      "default": "https://www.instagram.com/katerinaskinis/"
-    },
-    {
-      "type": "url",
-      "id": "tiktok_url",
-      "label": "TikTok URL",
-      "default": "https://www.tiktok.com/@katerinaskinis"
-    }
-  ]
-}
-{% endschema %}
