@@ -19,13 +19,13 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "text": "The Amalfi Edit — Coming July 2026"
+            "text": "No.1 — Launching August 2026"
           }
         },
         "item-2": {
           "type": "item",
           "settings": {
-            "text": "Athena & Lyra"
+            "text": "The Cannes Set · Deep Navy & Crème"
           }
         },
         "item-3": {
@@ -35,7 +35,11 @@
           }
         }
       },
-      "block_order": ["item-1", "item-2", "item-3"],
+      "block_order": [
+        "item-1",
+        "item-2",
+        "item-3"
+      ],
       "settings": {}
     },
     "manifesto": {
@@ -50,10 +54,10 @@
           "settings": {
             "image_asset": "navy-top.png",
             "piece_label": "Top",
-            "tag": "The Amalfi Edit · Athena",
-            "name": "Athena Top",
-            "description": "A deep metallic navy bandeau built with premium structural retention — perfect for long afternoons on the deck of a Riva. The Athena Top pairs with its matching bottom or mixes across the edit.",
-            "meta": "Deep metallic navy · Central ruching structure · Gold-toned hardware"
+            "tag": "No.1 · Deep Navy",
+            "name": "Cannes Top",
+            "description": "The Cannes Top in deep metallic navy — a structured bandeau built with premium retention, perfect for long afternoons on the deck of a Riva. Pair it with its matching bottom or contrast it with crème.",
+            "meta": "Deep metallic navy · Structured bandeau · Gold-toned hardware"
           }
         },
         "card-2": {
@@ -61,9 +65,9 @@
           "settings": {
             "image_asset": "navy-bottom.png",
             "piece_label": "Bottom",
-            "tag": "The Amalfi Edit · Athena",
-            "name": "Athena Bottom",
-            "description": "Matching the Athena Top in deep metallic navy, this bottom is built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
+            "tag": "No.1 · Deep Navy",
+            "name": "Cannes Bottom",
+            "description": "The Cannes Bottom in deep metallic navy, built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
             "meta": "Deep metallic navy · Adjustable side ties · High waist option"
           }
         },
@@ -72,10 +76,10 @@
           "settings": {
             "image_asset": "cream-top.png",
             "piece_label": "Top",
-            "tag": "The Amalfi Edit · Lyra",
-            "name": "Lyra Top",
-            "description": "A classic twist on minimalist coastal elegance. The Lyra Top blends soft off-white texture with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
-            "meta": "Crisp off-white · Twist-knot bandeau · Structural boning"
+            "tag": "No.1 · Crème",
+            "name": "Cannes Top",
+            "description": "The same Cannes silhouette in crisp crème — minimalist coastal elegance with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
+            "meta": "Crisp crème · Structured bandeau · Internal boning"
           }
         },
         "card-4": {
@@ -83,20 +87,36 @@
           "settings": {
             "image_asset": "cream-bottom.png",
             "piece_label": "Bottom",
-            "tag": "The Amalfi Edit · Lyra",
-            "name": "Lyra Bottom",
-            "description": "In the same crisp off-white as the Lyra Top, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
-            "meta": "Crisp off-white · Structural side-tie bows · Adjustable fit"
+            "tag": "No.1 · Crème",
+            "name": "Cannes Bottom",
+            "description": "The Cannes Bottom in crisp crème, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
+            "meta": "Crisp crème · Side-tie bows · Adjustable fit"
           }
         }
       },
-      "block_order": ["card-1", "card-2", "card-3", "card-4"],
+      "block_order": [
+        "card-1",
+        "card-2",
+        "card-3",
+        "card-4"
+      ],
       "settings": {}
     },
     "fit-guide": {
       "type": "fit-guide",
       "settings": {}
+    },
+    "waitlist": {
+      "type": "waitlist",
+      "settings": {}
     }
   },
-  "order": ["hero", "ticker", "manifesto", "collection", "fit-guide"]
+  "order": [
+    "hero",
+    "ticker",
+    "manifesto",
+    "collection",
+    "fit-guide",
+    "waitlist"
+  ]
 }
