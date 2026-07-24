@@ -1,0 +1,92 @@
+<section class="waitlist" id="waitlist" aria-labelledby="waitlist-heading">
+  <div class="waitlist__inner">
+
+    <header class="waitlist__header reveal">
+      <span class="section-eyebrow">{{ section.settings.eyebrow }}</span>
+      <h2 id="waitlist-heading">{{ section.settings.heading }}</h2>
+      <div class="rule rule--center"></div>
+    </header>
+
+    <div class="waitlist__card reveal d1">
+      <p>{{ section.settings.body }}</p>
+
+      <div id="waitlist-form-block">
+        <form id="waitlist-form" novalidate aria-label="Join the presale list">
+          <div class="form-group">
+            <label class="form-label" for="waitlist-field-name">First Name</label>
+            <input class="form-input"
+                   type="text"
+                   id="waitlist-field-name"
+                   name="first-name"
+                   placeholder="Your first name"
+                   autocomplete="given-name"
+                   required>
+            <span class="form-error" id="waitlist-err-name" role="alert">Please enter your first name.</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="waitlist-field-email">Email Address</label>
+            <input class="form-input"
+                   type="email"
+                   id="waitlist-field-email"
+                   name="email"
+                   placeholder="your@email.com"
+                   autocomplete="email"
+                   required>
+            <span class="form-error" id="waitlist-err-email" role="alert">Please enter a valid email address.</span>
+          </div>
+          <button type="submit" class="form-submit" id="waitlist-submit-btn">
+            {{ section.settings.button_label }}
+          </button>
+        </form>
+        <p class="form-privacy">No spam. Ever. Your information is kept strictly private.</p>
+      </div>
+
+      <div class="success-state" id="waitlist-success-block" aria-live="polite">
+        <div class="success-icon" aria-hidden="true">✓</div>
+        <h3>Welcome to the Club.</h3>
+        <p>
+          Your private access code <span class="success-code">JETSET15</span> is on its
+          way to your inbox. Early entry details will arrive in August.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Waitlist",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Jet-Set Club"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "First In, Best Dressed"
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body copy",
+      "default": "Join the presale list for No.1 — the Cannes set — and receive 15% off your first order, plus first access before the launch opens to everyone else."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Claim My 15% Off"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Waitlist"
+    }
+  ]
+}
+{% endschema %}
