@@ -1,26 +1,36 @@
 <section class="hero" id="home" aria-label="Hero">
-  <div class="hero__bg" aria-hidden="true" style="background-image: url('{{ section.settings.background_image | image_url: width: 1920 | default: "https://images.unsplash.com/photo-1568282167464-cb0d811b05c2?w=1920&q=85&auto=format&fit=crop" }}');"></div>
-  <div class="hero__vignette" aria-hidden="true"></div>
+  <div class="hero__inner">
 
-  <div class="hero__content">
-    <div class="hero__brand">
-      {%- if section.settings.logo != blank -%}
-        <img class="hero__kk" src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ section.settings.brand_name }}">
-      {%- else -%}
-        <img class="hero__kk" src="{{ 'horizontal-navy.png' | asset_url }}" alt="{{ section.settings.brand_name }}">
-      {%- endif -%}
-      <div class="hero__brand-rule"></div>
-      <span class="hero__brand-name">{{ section.settings.brand_name }}</span>
+    <div class="hero__copy">
+      <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
+      <h1 class="hero__title">{{ section.settings.title_line_1 }} <em>{{ section.settings.title_line_2 }}</em></h1>
+      <p class="hero__sub">{{ section.settings.subheading }}</p>
+
+      <div class="hero__actions">
+        <button class="btn btn--solid" id="hero-jetset-btn">{{ section.settings.cta_label }}</button>
+        <a class="btn btn--ghost" href="#collection">{{ section.settings.secondary_label }}</a>
+      </div>
     </div>
 
-    <span class="hero__eyebrow">{{ section.settings.eyebrow }}</span>
-    <p class="hero__sub">{{ section.settings.subheading }}</p>
-    <button class="hero__cta" id="hero-jetset-btn">{{ section.settings.cta_label }}</button>
-  </div>
+    <div class="hero__gallery" aria-hidden="true">
+      <figure class="hero__card hero__card--a">
+        {%- if section.settings.image_a != blank -%}
+          <img src="{{ section.settings.image_a | image_url: width: 900 }}" alt="">
+        {%- else -%}
+          <img src="{{ 'IMG_8106.jpeg' | asset_url }}" alt="">
+        {%- endif -%}
+        <figcaption>Cannes · Deep Navy</figcaption>
+      </figure>
+      <figure class="hero__card hero__card--b">
+        {%- if section.settings.image_b != blank -%}
+          <img src="{{ section.settings.image_b | image_url: width: 900 }}" alt="">
+        {%- else -%}
+          <img src="{{ 'IMG_8110.jpeg' | asset_url }}" alt="">
+        {%- endif -%}
+        <figcaption>Cannes · Crème</figcaption>
+      </figure>
+    </div>
 
-  <div class="hero__scroll" aria-hidden="true">
-    <span>Scroll</span>
-    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
@@ -29,38 +39,50 @@
   "name": "Hero",
   "settings": [
     {
-      "type": "image_picker",
-      "id": "logo",
-      "label": "Brand logo"
-    },
-    {
-      "type": "text",
-      "id": "brand_name",
-      "label": "Brand name",
-      "default": "Katerina's Kinis"
-    },
-    {
-      "type": "image_picker",
-      "id": "background_image",
-      "label": "Background image"
-    },
-    {
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow text",
-      "default": "The Amalfi Edit · Est. 2026"
+      "default": "Katerina's Kinis · Est. 2026"
+    },
+    {
+      "type": "text",
+      "id": "title_line_1",
+      "label": "Title (regular part)",
+      "default": "The"
+    },
+    {
+      "type": "text",
+      "id": "title_line_2",
+      "label": "Title (italic accent)",
+      "default": "No.1"
     },
     {
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Consciously crafted luxury swim essentials · Launching July 2026"
+      "default": "Consciously crafted luxury swim essentials. One silhouette, two colorways — arriving August 2026."
     },
     {
       "type": "text",
       "id": "cta_label",
-      "label": "CTA button label",
-      "default": "Enter the Jet-Set Club"
+      "label": "Primary CTA label",
+      "default": "Join the Presale — 15% Off"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "default": "View the Collection"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_a",
+      "label": "Gallery image — left (navy set)"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_b",
+      "label": "Gallery image — right (cream set)"
     }
   ],
   "presets": [
