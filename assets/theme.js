@@ -1,4 +1,4 @@
-/* NAV — add scrolled class once user leaves the hero */
+/* NAV — add scrolled class once user scrolls */
 (function () {
     const nav = document.getElementById('nav');
 
@@ -56,86 +56,24 @@
 }());
 
 
-/* JET-SET CLUB POPUP — open / close / form submission */
-(function () {
-    const overlay    = document.getElementById('jetset-overlay');
-    const closeBtn   = document.getElementById('jetset-close');
-    const heroBtn    = document.getElementById('hero-jetset-btn');
-    const sidebarBtn = document.getElementById('sidebar-jetset-btn');
-    const form       = document.getElementById('popup-waitlist-form');
-    const nameIn     = document.getElementById('popup-field-name');
-    const emailIn    = document.getElementById('popup-field-email');
-    const errName    = document.getElementById('popup-err-name');
-    const errEmail   = document.getElementById('popup-err-email');
-    const submitBtn  = document.getElementById('popup-submit-btn');
-    const formBlock  = document.getElementById('popup-form-block');
-    const successEl  = document.getElementById('popup-success-block');
+/* KLAVIYO SUBSCRIBE — shared submit handler for popup + on-page forms */
+function kkBindWaitlistForm(cfg) {
+    const form      = document.getElementById(cfg.form);
+    if (!form) return;
 
-    const EMAIL_RE   = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const SESSION_KEY = 'kk_jetset_shown';
+    const nameIn    = document.getElementById(cfg.name);
+    const emailIn   = document.getElementById(cfg.email);
+    const errName   = document.getElementById(cfg.errName);
+    const errEmail  = document.getElementById(cfg.errEmail);
+    const submitBtn = document.getElementById(cfg.submit);
+    const formBlock = document.getElementById(cfg.formBlock);
+    const successEl = document.getElementById(cfg.success);
 
-    function openPopup() {
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeBtn.focus();
-    }
+    const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const submitLabel = submitBtn.textContent.trim();
 
-    function closePopup() {
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
-
-    closeBtn.addEventListener('click', closePopup);
-    heroBtn.addEventListener('click', openPopup);
-    sidebarBtn.addEventListener('click', function () {
-        document.getElementById('sidebar').classList.remove('open');
-        document.getElementById('sidebar-overlay').classList.remove('open');
-        document.getElementById('burger-btn').classList.remove('open');
-        document.getElementById('burger-btn').setAttribute('aria-expanded', 'false');
-        document.getElementById('sidebar').setAttribute('aria-hidden', 'true');
-        document.getElementById('sidebar-overlay').setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('sidebar-open');
-        openPopup();
-    });
-
-    overlay.addEventListener('click', function (e) {
-        if (e.target === overlay) closePopup();
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape' && overlay.classList.contains('open')) closePopup();
-    });
-
-    if (!sessionStorage.getItem(SESSION_KEY)) {
-        // Open on first click anywhere on the page
-        document.addEventListener('click', function (e) {
-            if (overlay.classList.contains('open')) return;
-            if (!sessionStorage.getItem(SESSION_KEY)) {
-                openPopup();
-                sessionStorage.setItem(SESSION_KEY, '1');
-            }
-        }, { once: true });
-
-        // Fallback: also open after 2.2s if user hasn't clicked yet
-        setTimeout(function () {
-            if (!sessionStorage.getItem(SESSION_KEY)) {
-                openPopup();
-                sessionStorage.setItem(SESSION_KEY, '1');
-            }
-        }, 2200);
-    }
-
-    function markErr(input, msg) {
-        input.classList.add('is-error');
-        msg.classList.add('show');
-    }
-
-    function clearErr(input, msg) {
-        input.classList.remove('is-error');
-        msg.classList.remove('show');
-    }
+    function markErr(input, msg)  { input.classList.add('is-error');    msg.classList.add('show'); }
+    function clearErr(input, msg) { input.classList.remove('is-error'); msg.classList.remove('show'); }
 
     nameIn.addEventListener('input',  () => clearErr(nameIn,  errName));
     emailIn.addEventListener('input', () => clearErr(emailIn, errEmail));
@@ -184,6 +122,9 @@
         })
         .then(function (res) {
             if (!res.ok && res.status !== 202) throw new Error('Klaviyo error');
+
+            try { localStorage.setItem('kk_jetset_joined', '1'); } catch (err) {}
+
             formBlock.style.transition = 'opacity 0.45s ease';
             formBlock.style.opacity    = '0';
 
@@ -200,10 +141,113 @@
         })
         .catch(function () {
             submitBtn.disabled = false;
-            submitBtn.textContent = 'Claim My 15% Off';
+            submitBtn.textContent = submitLabel;
             errEmail.textContent = 'Something went wrong — please try again.';
             errEmail.classList.add('show');
         });
+    });
+}
+
+
+/* JET-SET CLUB POPUP — open / close / soft auto-trigger */
+(function () {
+    const overlay  = document.getElementById('jetset-overlay');
+    const closeBtn = document.getElementById('jetset-close');
+
+    const SHOWN_KEY  = 'kk_jetset_shown';
+    const JOINED_KEY = 'kk_jetset_joined';
+
+    function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+    function read(key)       { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+    function openPopup() {
+        overlay.classList.add('open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeBtn.focus();
+    }
+
+    function closePopup() {
+        overlay.classList.remove('open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    closeBtn.addEventListener('click', closePopup);
+
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closePopup();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && overlay.classList.contains('open')) closePopup();
+    });
+
+    /* Explicit openers: hero CTA, sidebar link, product-card CTAs */
+    document.querySelectorAll('#hero-jetset-btn, .jetset-open').forEach(function (btn) {
+        btn.addEventListener('click', openPopup);
+    });
+
+    const sidebarBtn = document.getElementById('sidebar-jetset-btn');
+    if (sidebarBtn) {
+        sidebarBtn.addEventListener('click', function () {
+            document.getElementById('sidebar').classList.remove('open');
+            document.getElementById('sidebar-overlay').classList.remove('open');
+            document.getElementById('burger-btn').classList.remove('open');
+            document.getElementById('burger-btn').setAttribute('aria-expanded', 'false');
+            document.getElementById('sidebar').setAttribute('aria-hidden', 'true');
+            document.getElementById('sidebar-overlay').setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('sidebar-open');
+            openPopup();
+        });
+    }
+
+    /* Soft auto-trigger: once per visitor, after 8s OR 40% scroll depth —
+       and never for visitors who already joined the list. */
+    if (!read(SHOWN_KEY) && !read(JOINED_KEY)) {
+        let fired = false;
+
+        function fire() {
+            if (fired) return;
+            if (overlay.classList.contains('open')) return;
+            fired = true;
+            store(SHOWN_KEY, '1');
+            openPopup();
+            window.removeEventListener('scroll', onScroll);
+        }
+
+        function onScroll() {
+            const depth = (window.scrollY + window.innerHeight) /
+                          document.documentElement.scrollHeight;
+            if (depth > 0.4) fire();
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        setTimeout(fire, 8000);
+    }
+
+    /* Bind popup form */
+    kkBindWaitlistForm({
+        form: 'popup-waitlist-form',
+        name: 'popup-field-name',
+        email: 'popup-field-email',
+        errName: 'popup-err-name',
+        errEmail: 'popup-err-email',
+        submit: 'popup-submit-btn',
+        formBlock: 'popup-form-block',
+        success: 'popup-success-block'
+    });
+
+    /* Bind on-page waitlist form */
+    kkBindWaitlistForm({
+        form: 'waitlist-form',
+        name: 'waitlist-field-name',
+        email: 'waitlist-field-email',
+        errName: 'waitlist-err-name',
+        errEmail: 'waitlist-err-email',
+        submit: 'waitlist-submit-btn',
+        formBlock: 'waitlist-form-block',
+        success: 'waitlist-success-block'
     });
 }());
 
