@@ -19,7 +19,7 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "text": "No.1 — Launching August 2026"
+            "text": "Launching August 2026"
           }
         },
         "item-2": {
@@ -52,10 +52,11 @@
         "card-1": {
           "type": "product_card",
           "settings": {
-            "image_asset": "navy-top.png",
+            "image_asset": "navy-top.jpg",
             "piece_label": "Top",
-            "tag": "No.1 · Deep Navy",
+            "tag": "Deep Navy",
             "name": "Cannes Top",
+            "price": "$54",
             "description": "The Cannes Top in deep metallic navy — a structured bandeau built with premium retention, perfect for long afternoons on the deck of a Riva. Pair it with its matching bottom or contrast it with crème.",
             "meta": "Deep metallic navy · Structured bandeau · Gold-toned hardware"
           }
@@ -63,10 +64,11 @@
         "card-2": {
           "type": "product_card",
           "settings": {
-            "image_asset": "navy-bottom.png",
+            "image_asset": "navy-bottom.jpg",
             "piece_label": "Bottom",
-            "tag": "No.1 · Deep Navy",
+            "tag": "Deep Navy",
             "name": "Cannes Bottom",
+            "price": "$54",
             "description": "The Cannes Bottom in deep metallic navy, built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
             "meta": "Deep metallic navy · Adjustable side ties · High waist option"
           }
@@ -76,8 +78,9 @@
           "settings": {
             "image_asset": "cream-top.png",
             "piece_label": "Top",
-            "tag": "No.1 · Crème",
+            "tag": "Crème",
             "name": "Cannes Top",
+            "price": "$54",
             "description": "The same Cannes silhouette in crisp crème — minimalist coastal elegance with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
             "meta": "Crisp crème · Structured bandeau · Internal boning"
           }
@@ -87,8 +90,9 @@
           "settings": {
             "image_asset": "cream-bottom.png",
             "piece_label": "Bottom",
-            "tag": "No.1 · Crème",
+            "tag": "Crème",
             "name": "Cannes Bottom",
+            "price": "$54",
             "description": "The Cannes Bottom in crisp crème, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
             "meta": "Crisp crème · Side-tie bows · Adjustable fit"
           }
