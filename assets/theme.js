@@ -96,17 +96,22 @@ function kkBindWaitlistForm(cfg) {
         submitBtn.disabled = true;
         submitBtn.textContent = 'Processing…';
 
+        /* Klaviyo client subscriptions API.
+           NOTE: from revision 2024-02-15 onward the list must be passed as a
+           relationship (data.relationships.list) — passing `list_id` inside
+           attributes returns 400 "'list_id' is not a valid field for the
+           resource 'subscription'". Content-Type must be vnd.api+json. */
         fetch('https://a.klaviyo.com/client/subscriptions/?company_id=YpD5LG', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/vnd.api+json',
                 'revision': '2024-02-15'
             },
             body: JSON.stringify({
                 data: {
                     type: 'subscription',
                     attributes: {
-                        list_id: 'SiJFQa',
+                        custom_source: cfg.source || 'Website signup form',
                         profile: {
                             data: {
                                 type: 'profile',
@@ -115,6 +120,11 @@ function kkBindWaitlistForm(cfg) {
                                     first_name: name
                                 }
                             }
+                        }
+                    },
+                    relationships: {
+                        list: {
+                            data: { type: 'list', id: 'SiJFQa' }
                         }
                     }
                 }
@@ -235,7 +245,8 @@ function kkBindWaitlistForm(cfg) {
         errEmail: 'popup-err-email',
         submit: 'popup-submit-btn',
         formBlock: 'popup-form-block',
-        success: 'popup-success-block'
+        success: 'popup-success-block',
+        source: 'Jet-Set Club popup'
     });
 
     /* Bind on-page waitlist form */
@@ -247,7 +258,8 @@ function kkBindWaitlistForm(cfg) {
         errEmail: 'waitlist-err-email',
         submit: 'waitlist-submit-btn',
         formBlock: 'waitlist-form-block',
-        success: 'waitlist-success-block'
+        success: 'waitlist-success-block',
+        source: 'Homepage waitlist section'
     });
 }());
 
