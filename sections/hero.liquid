@@ -6,6 +6,18 @@
       <h1 class="hero__title">{{ section.settings.title_line_1 }} <em>{{ section.settings.title_line_2 }}</em></h1>
       <p class="hero__sub">{{ section.settings.subheading }}</p>
 
+      {%- comment -%}
+        Launch countdown. Target is stored with an explicit UTC offset so it
+        resolves to noon Eastern regardless of the visitor's timezone.
+        August is EDT (UTC-4), not EST — using -05:00 here would fire an hour late.
+      {%- endcomment -%}
+      <div class="hero__countdown" id="kk-countdown" data-launch="2026-08-16T12:00:00-04:00" aria-live="polite" hidden>
+        <span class="kk-cd__unit"><b data-cd="d">00</b><i>Days</i></span>
+        <span class="kk-cd__unit"><b data-cd="h">00</b><i>Hrs</i></span>
+        <span class="kk-cd__unit"><b data-cd="m">00</b><i>Min</i></span>
+        <span class="kk-cd__unit"><b data-cd="s">00</b><i>Sec</i></span>
+      </div>
+
       <div class="hero__actions">
         <button class="btn btn--solid" id="hero-jetset-btn">{{ section.settings.cta_label }}</button>
         <a class="btn btn--ghost" href="#collection">{{ section.settings.secondary_label }}</a>
@@ -34,6 +46,45 @@
   </div>
 </section>
 
+<style>
+  .hero__countdown{display:flex;gap:26px;margin:26px 0 4px;flex-wrap:wrap}
+  .hero__countdown[hidden]{display:none}
+  .kk-cd__unit{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+  .kk-cd__unit b{font-family:'Playfair Display',Georgia,serif;font-size:34px;font-weight:500;color:var(--navy,#0F2042);font-variant-numeric:tabular-nums}
+  .kk-cd__unit i{margin-top:7px;font-family:'Inter',Helvetica,Arial,sans-serif;font-style:normal;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold,#C5B49E)}
+  .hero__countdown.is-live{font-family:'Playfair Display',Georgia,serif;font-size:26px;color:var(--navy,#0F2042)}
+  @media (max-width:640px){.hero__countdown{gap:18px}.kk-cd__unit b{font-size:26px}}
+</style>
+
+<script>
+  (function () {
+    var el = document.getElementById('kk-countdown');
+    if (!el) return;
+    var target = new Date(el.getAttribute('data-launch')).getTime();
+    if (isNaN(target)) return;
+    var out = {};
+    ['d','h','m','s'].forEach(function (k) { out[k] = el.querySelector('[data-cd="' + k + '"]'); });
+    function pad(n) { return n < 10 ? '0' + n : '' + n; }
+    function tick() {
+      var diff = target - Date.now();
+      if (diff <= 0) {
+        el.classList.add('is-live');
+        el.innerHTML = 'The Cannes is live.';
+        clearInterval(timer);
+        return;
+      }
+      var s = Math.floor(diff / 1000);
+      out.d.textContent = pad(Math.floor(s / 86400));
+      out.h.textContent = pad(Math.floor(s % 86400 / 3600));
+      out.m.textContent = pad(Math.floor(s % 3600 / 60));
+      out.s.textContent = pad(s % 60);
+    }
+    el.hidden = false;
+    tick();
+    var timer = setInterval(tick, 1000);
+  }());
+</script>
+
 {% schema %}
 {
   "name": "Hero",
@@ -60,7 +111,7 @@
       "type": "textarea",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Consciously crafted luxury swim essentials. One silhouette, two colorways — arriving August 2026."
+      "default": "Consciously crafted luxury swim essentials. One silhouette, two colorways — arriving Sunday, August 16 at 12PM ET."
     },
     {
       "type": "text",
