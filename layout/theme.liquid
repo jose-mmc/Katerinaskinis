@@ -13,6 +13,15 @@
 
   {{ content_for_header }}
 
+  {%- comment -%}
+    Klaviyo onsite tracking. Loaded directly rather than via the Shopify app
+    embed: on this custom theme Klaviyo cannot detect the embed ("Could not
+    retrieve Klaviyo App Embed status"), and the embed block only emits the
+    reviews flag without ever loading klaviyo.js. This powers Active on Site,
+    Viewed Product, and browse/cart abandonment triggers.
+  {%- endcomment -%}
+  <script async src="https://static.klaviyo.com/onsite/js/YpD5LG/klaviyo.js"></script>
+
   {{ 'theme.css' | asset_url | stylesheet_tag }}
 </head>
 <body>
