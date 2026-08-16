@@ -1,0 +1,68 @@
+<section class="cartpage">
+  <div class="container cartpage__inner">
+
+    <header class="cartpage__header">
+      <span class="section-eyebrow">Katerina's Kinis</span>
+      <h1>Your Bag</h1>
+      <div class="rule rule--center"></div>
+    </header>
+
+    {%- if cart.item_count > 0 -%}
+      {%- form 'cart', cart, id: 'cartpage-form' -%}
+        <div class="cartpage__lines">
+          {%- for item in cart.items -%}
+            <div class="cartline">
+              <a class="cartline__img" href="{{ item.url }}">
+                {%- if item.image != blank -%}
+                  <img src="{{ item.image | image_url: width: 300 }}" alt="{{ item.title | escape }}" loading="lazy">
+                {%- endif -%}
+              </a>
+              <div class="cartline__info">
+                <a class="cartline__title" href="{{ item.url }}">{{ item.product.title }}</a>
+                {%- unless item.variant.title == 'Default Title' -%}
+                  <span class="cartline__variant">{{ item.variant.title }}</span>
+                {%- endunless -%}
+                <span class="cartline__price">{{ item.final_price | money }}</span>
+                <a class="cartline__remove" href="{{ item.url_to_remove }}">Remove</a>
+              </div>
+              <div class="cartline__qty">
+                <label class="visually-hidden" for="updates_{{ item.key }}">Quantity</label>
+                <input id="updates_{{ item.key }}"
+                       type="number"
+                       name="updates[]"
+                       value="{{ item.quantity }}"
+                       min="0"
+                       inputmode="numeric">
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div class="cartpage__foot">
+          <div class="cartpage__subtotal">
+            <span>Subtotal</span>
+            <span>{{ cart.total_price | money }}</span>
+          </div>
+          <p class="kk-cart__note">Shipping &amp; taxes calculated at checkout.</p>
+          <div class="cartpage__actions">
+            <button type="submit" class="btn btn--ghost">Update Bag</button>
+            <button type="submit" name="checkout" class="btn btn--solid">Checkout</button>
+          </div>
+        </div>
+      {%- endform -%}
+    {%- else -%}
+      <div class="cartpage__empty">
+        <p>Your bag is empty.</p>
+        <a class="btn btn--solid" href="{{ routes.root_url }}#collection">Shop the Cannes</a>
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": []
+}
+{% endschema %}

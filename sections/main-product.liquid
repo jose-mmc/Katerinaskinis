@@ -1,0 +1,91 @@
+<section class="pdp">
+  <div class="container pdp__inner">
+
+    <div class="pdp__gallery">
+      {%- if product.featured_image != blank -%}
+        <div class="pdp__main-img">
+          <img id="pdp-main-image" src="{{ product.featured_image | image_url: width: 1100 }}" alt="{{ product.featured_image.alt | default: product.title }}">
+        </div>
+        {%- if product.images.size > 1 -%}
+          <div class="pdp__thumbs" role="list">
+            {%- for image in product.images -%}
+              <button type="button" class="pdp__thumb{% if forloop.first %} active{% endif %}" data-full="{{ image | image_url: width: 1100 }}" aria-label="View image {{ forloop.index }}">
+                <img src="{{ image | image_url: width: 220 }}" alt="{{ image.alt | default: product.title }}" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      {%- else -%}
+        <div class="pdp__main-img pdp__main-img--empty" aria-hidden="true"></div>
+      {%- endif -%}
+    </div>
+
+    <div class="pdp__info">
+      <a class="pdp__back" href="{{ routes.root_url }}#collection">&larr; The Cannes Collection</a>
+      <span class="section-eyebrow">{{ section.settings.eyebrow | default: shop.name }}</span>
+      <h1 class="pdp__title">{{ product.title }}</h1>
+      <p class="pdp__price" id="pdp-price">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <div class="rule"></div>
+
+      <div class="pdp__desc rte">{{ product.description }}</div>
+
+      {%- form 'product', product, id: 'pdp-form', class: 'pdp__form' -%}
+        {%- liquid
+          assign default_variant = product.selected_or_first_available_variant
+          assign show_pills = true
+          if product.variants.size == 1 and product.variants.first.title == 'Default Title'
+            assign show_pills = false
+          endif
+        -%}
+        <input type="hidden" name="id" id="pdp-variant-id" value="{{ default_variant.id }}">
+
+        {%- if show_pills -%}
+          <span class="pdp__opt-label">{{ product.options.first | default: 'Size' }}</span>
+          <div class="kk-pills kk-pills--pdp" role="group" aria-label="Select {{ product.options.first | default: 'size' | downcase }}">
+            {%- for variant in product.variants -%}
+              <button type="button"
+                      class="kk-pill{% if variant.id == default_variant.id %} selected{% endif %}"
+                      data-variant-id="{{ variant.id }}"
+                      data-price="{{ variant.price | money }}"
+                      {% unless variant.available %}disabled aria-disabled="true"{% endunless %}>
+                {{ variant.title }}
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+
+        {%- if product.available -%}
+          <button type="submit" class="btn btn--solid pdp__add kk-pdp-add">Add to Cart</button>
+        {%- else -%}
+          <button type="button" class="btn btn--solid pdp__add" disabled aria-disabled="true">Sold Out</button>
+        {%- endif -%}
+        <p class="kk-buy-msg" role="alert" aria-live="polite"></p>
+      {%- endform -%}
+
+      {%- if section.settings.note != blank -%}
+        <p class="pdp__note">{{ section.settings.note }}</p>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Page",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Katerina's Kinis"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note under add to cart",
+      "default": "Tops and bottoms sold separately."
+    }
+  ]
+}
+{% endschema %}
