@@ -1,0 +1,31 @@
+<div class="kk-cart-overlay" id="kk-cart-overlay" aria-hidden="true"></div>
+
+<aside class="kk-cart" id="kk-cart" role="dialog" aria-modal="true" aria-label="Shopping bag" aria-hidden="true">
+  <div class="kk-cart__top">
+    <h2 class="kk-cart__title">Your Bag <span class="kk-cart__title-count" id="kk-cart-title-count"></span></h2>
+    <button class="kk-cart__close" id="kk-cart-close" aria-label="Close bag">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+        <line x1="2" y1="2" x2="16" y2="16"/>
+        <line x1="16" y1="2" x2="2" y2="16"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="kk-cart__body">
+    <div class="kk-cart__lines" id="kk-cart-lines"></div>
+    <div class="kk-cart__empty" id="kk-cart-empty" hidden>
+      <p>Your bag is empty.</p>
+      <a class="btn btn--ghost" href="{{ routes.root_url }}#collection">Shop the Cannes</a>
+    </div>
+  </div>
+
+  <div class="kk-cart__foot" id="kk-cart-foot" hidden>
+    <div class="kk-cart__subtotal">
+      <span>Subtotal</span>
+      <span id="kk-cart-subtotal"></span>
+    </div>
+    <p class="kk-cart__note">Shipping &amp; taxes calculated at checkout.</p>
+    <a href="/checkout" class="btn btn--solid kk-cart__checkout">Checkout</a>
+    <a href="{{ routes.cart_url }}" class="kk-cart__viewcart">View full bag</a>
+  </div>
+</aside>
