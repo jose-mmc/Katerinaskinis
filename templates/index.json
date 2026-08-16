@@ -11,7 +11,11 @@
   "sections": {
     "hero": {
       "type": "hero",
-      "settings": {}
+      "settings": {
+        "subheading": "Consciously crafted luxury swim essentials. One silhouette, two colorways — available now.",
+        "cta_label": "Shop the Cannes",
+        "secondary_label": "The Fit Guide"
+      }
     },
     "ticker": {
       "type": "ticker",
@@ -19,13 +23,13 @@
         "item-1": {
           "type": "item",
           "settings": {
-            "text": "Launching Sunday, August 16 · 12PM ET"
+            "text": "Now Live · The Cannes Set"
           }
         },
         "item-2": {
           "type": "item",
           "settings": {
-            "text": "The Cannes Set · Deep Navy & Crème"
+            "text": "Deep Navy & Crème · $54 Per Piece"
           }
         },
         "item-3": {
@@ -58,7 +62,8 @@
             "name": "Cannes Top",
             "price": "$54",
             "description": "The Cannes Top in deep metallic navy — a structured bandeau built with premium retention, perfect for long afternoons on the deck of a Riva. Pair it with its matching bottom or contrast it with crème.",
-            "meta": "Deep metallic navy · Structured bandeau · Gold-toned hardware"
+            "meta": "Deep metallic navy · Structured bandeau · Gold-toned hardware",
+            "product_handle": "cannes-top-navy"
           }
         },
         "card-2": {
@@ -70,7 +75,8 @@
             "name": "Cannes Bottom",
             "price": "$54",
             "description": "The Cannes Bottom in deep metallic navy, built for proportion and movement. Adjustable side-tie geometry creates a flawless, personalized contour.",
-            "meta": "Deep metallic navy · Adjustable side ties · High waist option"
+            "meta": "Deep metallic navy · Adjustable side ties · High waist option",
+            "product_handle": "cannes-bottom-navy"
           }
         },
         "card-3": {
@@ -82,7 +88,8 @@
             "name": "Cannes Top",
             "price": "$54",
             "description": "The same Cannes silhouette in crisp crème — minimalist coastal elegance with a structured twist-knot bandeau designed for effortless movement from sea to terrace.",
-            "meta": "Crisp crème · Structured bandeau · Internal boning"
+            "meta": "Crisp crème · Structured bandeau · Internal boning",
+            "product_handle": "cannes-top-creme"
           }
         },
         "card-4": {
@@ -94,7 +101,8 @@
             "name": "Cannes Bottom",
             "price": "$54",
             "description": "The Cannes Bottom in crisp crème, with adjustable tie geometry at both hips. Engineered for a contoured, European silhouette that moves as beautifully as it looks.",
-            "meta": "Crisp crème · Side-tie bows · Adjustable fit"
+            "meta": "Crisp crème · Side-tie bows · Adjustable fit",
+            "product_handle": "cannes-bottom-creme"
           }
         }
       },
@@ -112,7 +120,12 @@
     },
     "waitlist": {
       "type": "waitlist",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The Jet-Set Club",
+        "heading": "First In, Best Dressed",
+        "body": "Join the Jet-Set Club for 15% off your first order, plus first access to future drops before they open to everyone else.",
+        "button_label": "Claim My 15% Off"
+      }
     }
   },
   "order": [
