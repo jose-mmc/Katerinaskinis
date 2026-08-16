@@ -59,47 +59,14 @@
             </div>
             <span class="product__piece-label">{{ block.settings.piece_label }}</span>
             <span class="product__tag">{{ block.settings.tag }}</span>
-            <h3 class="product__name">
-              {%- if card_product != blank -%}
-                <a class="product__name-link" href="{{ card_product.url }}">{{ block.settings.name | default: card_product.title }}</a>
-                <span class="product__price">{{ card_product.price | money }}</span>
-              {%- else -%}
-                {{ block.settings.name }}{%- if block.settings.price != blank -%}<span class="product__price">{{ block.settings.price }}</span>{%- endif -%}
-              {%- endif -%}
-            </h3>
+            <h3 class="product__name">{{ block.settings.name | default: card_product.title }}</h3>
             <p class="product__desc">{{ block.settings.description }}</p>
             <div class="product__meta">{{ block.settings.meta }}</div>
 
             {%- if card_product != blank -%}
-              {%- comment -%} Live commerce mode: size pills + AJAX add to cart {%- endcomment -%}
-              <div class="product__buy kk-buy" data-product-title="{{ card_product.title | escape }}">
-                {%- assign show_pills = true -%}
-                {%- if card_product.variants.size == 1 and card_product.variants.first.title == 'Default Title' -%}
-                  {%- assign show_pills = false -%}
-                {%- endif -%}
-                {%- if show_pills -%}
-                  <div class="kk-pills" role="group" aria-label="Select size">
-                    {%- for variant in card_product.variants -%}
-                      <button type="button"
-                              class="kk-pill"
-                              data-variant-id="{{ variant.id }}"
-                              {% unless variant.available %}disabled aria-disabled="true"{% endunless %}>
-                        {{ variant.title }}
-                      </button>
-                    {%- endfor -%}
-                  </div>
-                {%- else -%}
-                  <input type="hidden" class="kk-single-variant" value="{{ card_product.variants.first.id }}">
-                {%- endif -%}
-                {%- if card_product.available -%}
-                  <button class="btn btn--solid product__cta kk-add-btn" type="button">
-                    {{ section.settings.add_label | default: 'Add to Cart' }}
-                  </button>
-                {%- else -%}
-                  <button class="btn btn--solid product__cta" type="button" disabled aria-disabled="true">Sold Out</button>
-                {%- endif -%}
-                <p class="kk-buy-msg" role="alert" aria-live="polite"></p>
-              </div>
+              <a class="btn btn--solid product__cta" href="{{ card_product.url }}">
+                {%- if block.settings.piece_label != blank -%}Shop the {{ block.settings.piece_label }}{%- else -%}View Product{%- endif -%}
+              </a>
             {%- else -%}
               {%- comment -%} Fallback: product not yet connected — keep Jet-Set Club capture {%- endcomment -%}
               <button class="btn btn--solid product__cta jetset-open" type="button">{{ section.settings.card_cta_label | default: 'Get 15% Off' }}</button>
