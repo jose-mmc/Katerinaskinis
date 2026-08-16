@@ -3,7 +3,14 @@
     {%- for block in section.blocks -%}
       {%- if block.type == 'item' -%}
         <span class="ticker__item">
-          <span class="ticker__text">{{ block.settings.text }}</span>
+          {%- liquid
+            assign kk_text = block.settings.text
+            assign kk_check = kk_text | downcase
+            if kk_check contains 'launching' or kk_check contains 'arriving'
+              assign kk_text = 'Now Live · The Cannes Set'
+            endif
+          -%}
+          <span class="ticker__text">{{ kk_text }}</span>
           <span class="ticker__dot"></span>
         </span>
       {%- endif -%}
@@ -11,7 +18,14 @@
     {%- for block in section.blocks -%}
       {%- if block.type == 'item' -%}
         <span class="ticker__item">
-          <span class="ticker__text">{{ block.settings.text }}</span>
+          {%- liquid
+            assign kk_text = block.settings.text
+            assign kk_check = kk_text | downcase
+            if kk_check contains 'launching' or kk_check contains 'arriving'
+              assign kk_text = 'Now Live · The Cannes Set'
+            endif
+          -%}
+          <span class="ticker__text">{{ kk_text }}</span>
           <span class="ticker__dot"></span>
         </span>
       {%- endif -%}

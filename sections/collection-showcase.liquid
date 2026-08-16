@@ -28,6 +28,16 @@
             if card_product == blank and block.settings.product_handle != blank
               assign card_product = all_products[block.settings.product_handle]
             endif
+            if card_product == blank
+              assign kk_piece = block.settings.piece_label | strip | downcase
+              assign kk_color = 'navy'
+              assign kk_tag = block.settings.tag | strip | downcase
+              if kk_tag contains 'cr'
+                assign kk_color = 'creme'
+              endif
+              assign kk_handle = 'cannes-' | append: kk_piece | append: '-' | append: kk_color
+              assign card_product = all_products[kk_handle]
+            endif
           -%}
           <article class="product reveal d{{ forloop.index }}" {{ block.shopify_attributes }}>
             <div class="product__frame">
