@@ -1691,16 +1691,17 @@ body.sidebar-open { overflow: hidden; }
 ============================================================ */
 .manifesto__editorial {
     margin: var(--space-xxl) auto 0;
-    max-width: 1080px;
+    max-width: 660px;
+    background: linear-gradient(160deg, #F3EDE4 0%, var(--gold-light) 100%);
+    border: 1px solid rgba(197, 180, 158, 0.35);
+    padding: clamp(1rem, 2.5vw, 1.75rem);
+    box-shadow: 0 24px 60px -30px rgba(15, 32, 66, 0.35);
 }
 
 .manifesto__editorial img {
     display: block;
     width: 100%;
-    height: clamp(340px, 62vh, 640px);
-    object-fit: cover;
-    object-position: center 10%;
-    box-shadow: 0 30px 70px -35px rgba(15, 32, 66, 0.35);
+    height: auto;
 }
 
 .manifesto__editorial figcaption {
